@@ -1,0 +1,79 @@
+alias zshrc='source ~/.zshrc'
+alias home='cd ~'
+
+# Updates
+alias update='_ apt update && _ apt list --upgradable'
+alias upgrade='update && _ apt upgrade'
+alias autoremove='_ apt autoremove'
+
+# WSL
+alias wsl_stop='wsl.exe --shutdown'
+
+# Docker
+alias dcstart='_ service docker start'
+alias dcstop='_ service docker stop'
+alias dc='docker'
+alias dcr='dc run'
+alias dcrmall='dc rm $(dc ps -aq) -f'
+alias dcirmall="dirm $(dils -aq) -f"
+
+dcpush() {
+  LOCAL_IMG=$1
+  TAG_IMG=$2:$3
+  IMG="${2}:latest"
+
+  docker tag LOCAL_IMG $TAG_IMG
+  docker tag LOCAL_IMG $IMG
+
+  docker push $TAG_IMG
+  docker push $IMG
+}
+
+# Docker Compose
+alias dcb='docker compose build'
+alias dcup='docker compose up'
+alias dcostart='docker compose start'
+alias dcostop='docker compose stop'
+
+#Java/Maven
+alias mutjava='mvn org.pitest:pitest-maven:mutationCoverage | grep -E "Killed | Line Coverage"'
+
+# NPM
+alias ni='npm install'
+
+# Python
+alias pyr='python3'
+alias ppf='pip freeze'
+alias venvs='ls ~/.venvs'
+alias ppff='pip freeze >'
+alias ppif='pip install -r'
+alias ppi='pip install'
+alias ppuf='pip uninstall -r'
+alias pyt='pytest'
+alias pytv='pytest -vv'
+
+pve() {
+  source ~/.venvs/$1/bin/activate
+  which python
+}
+
+#Minikube
+alias minikube="~/.my_configs/minikube"
+alias mkstart="minikube start"
+alias mkstop="minikube stop"
+alias mkstatus="minikube status"
+
+#Kubectl
+alias kubens="k ns"
+alias kubectx="k ctx"
+
+# Utils
+tob64() {
+  echo -n "$1" | base64
+}
+
+# Jenkins
+alias ngrok="dcr -it -e NGROK_AUTHTOKEN=$NGROK_TOKEN --net=host ngrok/ngrok http 8080"
+alias jkstart="dcr -d --name=alpineSocat --restart=always -p 127.0.0.1:2376:2375 --network jenkins -v /var/run/docker.sock:/var/run/docker.sock alpine/socat tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock && jenkins"
+
+echo "Aliases loaded"
