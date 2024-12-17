@@ -15,15 +15,15 @@ alias dcstop='_ service docker stop'
 alias dc='docker'
 alias dcr='dc run'
 alias dcrmall='dc rm $(dc ps -aq) -f'
-alias dcirmall="dirm $(dils -aq) -f"
+alias dcirmall="dirm $(docker image ls -aq) -f"
 
 dcpush() {
   LOCAL_IMG=$1
   TAG_IMG=$2:$3
   IMG="${2}:latest"
 
-  docker tag LOCAL_IMG $TAG_IMG
-  docker tag LOCAL_IMG $IMG
+  docker tag $LOCAL_IMG $TAG_IMG
+  docker tag $LOCAL_IMG $IMG
 
   docker push $TAG_IMG
   docker push $IMG
@@ -72,8 +72,10 @@ tob64() {
   echo -n "$1" | base64
 }
 
-# Jenkins
-alias ngrok="dcr -it -e NGROK_AUTHTOKEN=$NGROK_TOKEN --net=host ngrok/ngrok http 8080"
-alias jkstart="dcr -d --name=alpineSocat --restart=always -p 127.0.0.1:2376:2375 --network jenkins -v /var/run/docker.sock:/var/run/docker.sock alpine/socat tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock && jenkins"
+cpp() {
+  gcc -o $1 $1.cpp -lm -lstdc++ && ./$1
+}
 
-echo "Aliases loaded"
+# Jenkins
+alias ngrok="dcr -it --rm --name=ngrok -e NGROK_AUTHTOKEN=$NGROK_TOKEN --net=host ngrok/ngrok http 8080"
+alias jkstart="dcr -d --name=alpineSocat --restart=always -p 127.0.0.1:2376:2375 --network jenkins -v /var/run/docker.sock:/var/run/docker.sock alpine/socat tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock && jenkins"
