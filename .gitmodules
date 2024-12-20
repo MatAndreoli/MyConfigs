@@ -7,3 +7,6 @@
 [submodule "tmux/.tmux/plugins/vim-tmux-navigator"]
     path = tmux/.tmux/plugins/vim-tmux-navigator
     url = https://git::@github.com/christoomey/vim-tmux-navigator
+[submodule "tmux/.tmux/plugins/tmux-yank"]
+    path = tmux/.tmux/plugins/tmux-yank
+    url = https://git::@github.com/tmux-plugins/tmux-yank
