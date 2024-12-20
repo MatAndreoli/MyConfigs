@@ -10,9 +10,10 @@ local state = {
 }
 
 local function create_floating_window(opts)
+  print(opts.size)
   opts = opts or {}
-  local width = opts.width or math.floor(vim.o.columns * 0.8)
-  local height = opts.height or math.floor(vim.o.lines * 0.8)
+  local width = opts.width or math.floor(vim.o.columns * (opts.size or 0.8))
+  local height = opts.height or math.floor(vim.o.lines * (opts.size or 0.8))
 
   -- Calculate the position to center the window
   local col = math.floor((vim.o.columns - width) / 2)
@@ -86,7 +87,27 @@ local function focus_terminal_window(win_id)
   start_insert_mode()
 end
 
-local function toggle_terminal()
+local function create_terminal_with_command(buf, command, win_id)
+  if not command then
+    vim.cmd.terminal()
+  else
+    -- Create terminal with command and set up autoclose
+    vim.fn.termopen(command, {
+      on_exit = function()
+        vim.schedule(function()
+          if vim.api.nvim_win_is_valid(win_id) then
+            vim.api.nvim_win_close(win_id, true)
+          end
+          if vim.api.nvim_buf_is_valid(buf) then
+            vim.api.nvim_buf_delete(buf, { force = true })
+          end
+        end)
+      end,
+    })
+  end
+end
+
+local function toggle_terminal(command)
   local is_floating_win_valid = vim.api.nvim_win_is_valid(state.floating.win)
 
   -- If window exists but is not focused, focus it
@@ -97,9 +118,9 @@ local function toggle_terminal()
 
   -- If window doesn't exist, create it
   if not is_floating_win_valid then
-    state.floating = create_floating_window { buf = state.floating.buf }
+    state.floating = create_floating_window { buf = state.floating.buf, size = command and 0.9 or nil }
     if vim.bo[state.floating.buf].buftype ~= 'terminal' then
-      vim.cmd.terminal()
+      create_terminal_with_command(state.floating.buf, command, state.floating.win)
     end
     start_insert_mode()
   else
@@ -107,7 +128,7 @@ local function toggle_terminal()
   end
 end
 
-local function toggle_bottom_terminal()
+local function toggle_bottom_terminal(command)
   local is_botton_win_valid = vim.api.nvim_win_is_valid(state.bottom.win)
 
   -- If window exists but is not focused, focus it
@@ -120,7 +141,7 @@ local function toggle_bottom_terminal()
   if not is_botton_win_valid then
     state.bottom = create_bottom_terminal { buf = state.bottom.buf }
     if vim.bo[state.bottom.buf].buftype ~= 'terminal' then
-      vim.cmd.terminal()
+      create_terminal_with_command(state.bottom.buf, command, state.floating.win)
     end
     start_insert_mode()
   else
@@ -128,8 +149,23 @@ local function toggle_bottom_terminal()
   end
 end
 
-vim.api.nvim_create_user_command('Floaterminal', toggle_terminal, {})
-vim.api.nvim_create_user_command('BottomTerminal', toggle_bottom_terminal, {})
+-- Command creation with optional argument
+vim.api.nvim_create_user_command('Floaterminal', function(opts)
+  toggle_terminal(opts.args)
+end, { nargs = '?' })
 
+vim.api.nvim_create_user_command('BottomTerminal', function(opts)
+  toggle_bottom_terminal(opts.args)
+end, { nargs = '?' })
+
+-- Add specific command for superfile
+vim.api.nvim_create_user_command('TerminalSPF', function()
+  toggle_terminal 'spf'
+end, {})
+
+-- Keymaps
 vim.keymap.set({ 'n', 't' }, '<C-t>t', toggle_terminal, { desc = '[T]oggle [T]erminaL (floating)' })
 vim.keymap.set({ 'n', 't' }, '<C-t>b', toggle_bottom_terminal, { desc = '[T]oggle [B]ottom Terminal (floating)' })
+vim.keymap.set('n', '<leader>e', function()
+  toggle_terminal 'spf'
+end, { desc = 'Open terminal with SPF' })
