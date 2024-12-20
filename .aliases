@@ -1,5 +1,10 @@
 alias zshrc='source ~/.zshrc'
 alias home='cd ~'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
 
 # Updates
 alias update='_ apt update && _ apt list --upgradable'
