@@ -1,4 +1,5 @@
 alias zshrc='source ~/.zshrc'
+alias _='sudo'
 alias home='cd ~'
 alias ..='cd ..'
 alias ...='cd ../..'

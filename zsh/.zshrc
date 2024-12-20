@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source ~/.my_configs/.my_envs
+source ~/.my_envs
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -31,6 +31,7 @@ zinit light Aloxaf/fzf-tab
 zinit snippet OMZP::git
 zinit snippet OMZP::mvn
 zinit snippet OMZP::sudo
+zinit snippet OMZP::fzf
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -82,6 +83,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # Aliases
 alias ls='ls --color'
 alias c='clear'
-source ~/.my_configs/.aliases
+source ~/.aliases
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="${HOME}/.local/bin":${PATH}
