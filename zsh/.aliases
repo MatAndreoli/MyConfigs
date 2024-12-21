@@ -6,6 +6,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
+alias nv='nvim'
 
 # Updates
 alias update='_ apt update && _ apt list --upgradable'
