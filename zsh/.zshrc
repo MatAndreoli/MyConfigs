@@ -30,10 +30,14 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
 # Add in snippets
+zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::mvn
 zinit snippet OMZP::sudo
 zinit snippet 'https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh'
+
+zinit load 'zsh-users/zsh-history-substring-search'
+zinit ice wait atload'_history_substring_search_config'
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -45,8 +49,8 @@ zinit cdreplay -q
 
 # Keybindings
 bindkey -e
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
 
 # History
 HISTSIZE=5000
@@ -73,20 +77,6 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
 zstyle ':fzf-tab:*' switch-group ',' '.'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':omz:plugins:nvm' lazy yes
-
-# Pyenv configuration
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-# NVM configuration
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# SDKMAN configuration
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Aliases
 alias ls='ls --color'

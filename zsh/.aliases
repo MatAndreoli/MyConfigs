@@ -1,3 +1,5 @@
+#!/bin/sh
+
 alias zshrc='source ~/.zshrc'
 alias _='sudo'
 alias home='cd ~'
@@ -86,3 +88,17 @@ cpp() {
 # Jenkins
 alias ngrok="dcr -it --rm --name=ngrok -e NGROK_AUTHTOKEN=$NGROK_TOKEN --net=host ngrok/ngrok http 8080"
 alias jkstart="dcr -d --name=alpineSocat --restart=always -p 127.0.0.1:2376:2375 --network jenkins -v /var/run/docker.sock:/var/run/docker.sock alpine/socat tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock && jenkins"
+
+# SDKMAN configuration
+alias java_mode="export SDKMAN_DIR="$HOME/.sdkman" && [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh""
+
+
+# NVM configuration
+alias nvm_mode="export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion""
+
+# Pyenv configuration
+pyenv_mode() {
+  export PYENV_ROOT="$HOME/.pyenv"
+  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+}
