@@ -1,0 +1,18 @@
+#!/bin/sh
+
+export FZF_DEFAULT_OPTS='--height 80% --tmux bottom,80% --layout reverse --border top'
+export FZF_ALT_C_OPTS="
+  --walker-skip .git,node_modules,target,__pycache__
+  --preview 'tree -C {}'"
+
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           find . -type d | fzf --preview 'tree -C {} | head -200'   "$@" ;;
+    ls)           find . -type d | fzf --preview 'tree -C {} | head -200'   "$@" ;;
+    export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
+    *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
+  esac
+}
