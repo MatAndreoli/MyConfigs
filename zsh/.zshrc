@@ -5,8 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source ~/.my_envs
-source ~/.fzfrc
+for config in ~/.customs/.*; do
+  source "$config"
+done
 
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -81,7 +82,6 @@ zstyle ':omz:plugins:nvm' lazy yes
 # Aliases
 alias ls='ls --color'
 alias c='clear'
-source ~/.aliases
 
 export PATH="${HOME}/.local/bin":${PATH}
 

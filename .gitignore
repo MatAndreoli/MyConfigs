@@ -1,2 +1,5 @@
 .my_envs
 .my_configs.code-workspace
+tmux*.log
+zsh/.customs/.grafeas_cmds
+zsh/.customs/.waliases

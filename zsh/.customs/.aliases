@@ -9,6 +9,8 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 alias nv='nvim'
+alias la='ls -a'
+alias ll='ls -al'
 
 # Updates
 alias update='_ apt update && _ apt list --upgradable'
@@ -91,7 +93,6 @@ alias jkstart="dcr -d --name=alpineSocat --restart=always -p 127.0.0.1:2376:2375
 
 # SDKMAN configuration
 alias java_mode="export SDKMAN_DIR="$HOME/.sdkman" && [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh""
-
 
 # NVM configuration
 alias nvm_mode="export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion""

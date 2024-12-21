@@ -1,0 +1,42 @@
+#!/bin/bash
+
+cleanNodeModules() {
+  dir=$(pwd)
+  echo "Removing node_modules from $dir"
+  find "$dir" -name "node_modules" -type d -exec rm -rf {} +
+  echo "Cleanup complete."
+}
+
+cleanAllNodeModules() {
+  src_dir="$VIVO_REPOS"src
+  cd "$src_dir" || exit
+  for dir in "$src_dir"/*; do
+    if [ -d "$dir" ] && [ -d "$dir/.git" ]; then
+      echo "Removing node_modules from $dir"
+      find "$dir" -name "node_modules" -type d -exec rm -rf {} +
+    fi
+  done
+
+  echo "Cleanup complete."
+}
+
+putCertificates() {
+  env="$1"
+  config_path=/var/run/secrets/kubernetes.io/serviceaccount
+  files_path=~/Documents/cluster
+  if [ ! -d /var/run/secrets ]; then
+    printf "Dir secrets doesn't exist, creating dir tree\n"
+    sudo mkdir -p "$config_path"
+  else
+    printf "Dir secrets already exists\n"
+  fi
+  printf "Copying files for %s\n" "$env"
+  sudo cp "$files_path"/ca_"$env".crt $config_path/ca.crt
+  sudo cp "$files_path"/token_"$env" $config_path/token
+  ls /var/run/secrets/kubernetes.io/serviceaccount
+}
+
+emptyCommit() {
+  git commit -m 'Trigger Pipe' --allow-empty --no-verify
+  git push --no-verify
+}

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+removeImagesFrom() {
+  docker rmi -f "$(docker images -aq -f reference="$1")"
+}
+
+cleanContainers() {
+  docker rm $(docker ps -aq -f ancestor=$1)
+}
