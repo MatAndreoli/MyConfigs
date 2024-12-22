@@ -7,8 +7,8 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 vim.keymap.set('i', ';;', '<Esc>', { noremap = true, silent = true })
 
-vim.keymap.set('n', '<C-a>', ':qa!<CR>', { desc = 'Quit all (without saving "!")' })
-vim.keymap.set('n', '<C-x>', ':wqa<CR>', { desc = 'Quit all' })
+vim.keymap.set('n', '<C-a>', ':qa!<CR>', { desc = 'Quit all (without saving "!")', silent = true })
+vim.keymap.set('n', '<C-x>', ':wqa<CR>', { desc = 'Quit all', silent = true })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -48,7 +48,7 @@ vim.keymap.set('t', '<C-t>', '<C-\\><C-n>:q<CR>', { desc = 'Close terminal split
 vim.keymap.set('v', '>', '>gv', { desc = 'Indent and keep selection' })
 vim.keymap.set('v', '<', '<gv', { desc = 'Unindent and keep selection' })
 
-vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = '[S]ave current buffer' })
+vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = '[S]ave current buffer', silent = true })
 
 vim.keymap.set('n', 'n', 'nzt')
 
