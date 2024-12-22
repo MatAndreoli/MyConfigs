@@ -24,4 +24,16 @@ return {
       require('colortils').setup()
     end,
   },
+  { --* Highlight colors and add color completions *--
+    'brenoprata10/nvim-highlight-colors',
+    event = 'VeryLazy',
+    opts = {
+      virtual_symbol_suffix = ' ',
+      virtual_symbol_prefix = ' ',
+      virtual_symbol_position = 'eow',
+      virtual_symbol = '󱓻',
+      render = 'virtual',
+      enable_tailwind = true,
+    },
+  },
 }

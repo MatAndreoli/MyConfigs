@@ -58,6 +58,36 @@ return { -- Collection of various small independent plugins/modules
       },
     }
 
+    require('mini.icons').setup {
+      lsp = { -- Icons stollen from lspkind.nvim
+        text = { glyph = '󰉿' },
+        method = { glyph = '󰆧' },
+        ['function'] = { glyph = '󰊕' },
+        constructor = { glyph = '' },
+        field = { glyph = '󰜢' },
+        variable = { glyph = '󰀫' },
+        class = { glyph = '󰠱' },
+        interface = { glyph = '' },
+        module = { glyph = '' },
+        property = { glyph = '󰜢' },
+        unit = { glyph = '󰑭' },
+        value = { glyph = '󰎠' },
+        enum = { glyph = '' },
+        keyword = { glyph = '󰌋' },
+        snippet = { glyph = '' },
+        color = { glyph = '󰏘' },
+        file = { glyph = '󰈙' },
+        reference = { glyph = '󰈇' },
+        folder = { glyph = '󰉋' },
+        enumMember = { glyph = '' },
+        constant = { glyph = '󰏿' },
+        struct = { glyph = '󰙅' },
+        event = { glyph = '' },
+        operator = { glyph = '󰆕' },
+        typeParameter = { glyph = '' },
+      },
+    }
+
     -- Simple and easy statusline.
     --  You could remove this setup call if you don't like it,
     --  and try some other statusline plugin

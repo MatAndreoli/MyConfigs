@@ -47,8 +47,52 @@ return { -- Autocompletion
         end,
       },
       window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+        -- completion = cmp.config.window.bordered(),
+        -- documentation = cmp.config.window.bordered(),
+        completion = {
+          border = {
+            { '󱐋', 'WarningMsg' },
+            { '─', 'Comment' },
+            { '╮', 'Comment' },
+            { '│', 'Comment' },
+            { '╯', 'Comment' },
+            { '─', 'Comment' },
+            { '╰', 'Comment' },
+            { '│', 'Comment' },
+          },
+        },
+        documentation = {
+          border = {
+            { '󰙎', 'DiagnosticHint' },
+            { '─', 'Comment' },
+            { '╮', 'Comment' },
+            { '│', 'Comment' },
+            { '╯', 'Comment' },
+            { '─', 'Comment' },
+            { '╰', 'Comment' },
+            { '│', 'Comment' },
+          },
+        },
+      },
+      formatting = {
+        fields = { 'abbr', 'kind' }, -- Name | icon
+        format = function(_, item) -- lspkind behaviour with mini.icons and nvim-highlight-colors (add cute little icons and css colors)
+          local color_item = require('nvim-highlight-colors').format(entry, { kind = item.kind })
+          item.kind, item.kind_hl_group = require('mini.icons').get('lsp', item.kind) .. ' '
+          if color_item.abbr_hl_group then
+            item.kind_hl_group = color_item.abbr_hl_group
+            item.kind = color_item.abbr
+          end
+          return item
+        end,
+      },
+      performance = { -- Trying to improve performance
+        debounce = 6,
+        throttle = 10,
+        fetching_timeout = 200,
+        confirm_resolve_timeout = 60,
+        async_budget = 1,
+        max_view_entries = 200,
       },
       completion = { completeopt = 'menu,menuone,noinsert' },
 
@@ -110,9 +154,14 @@ return { -- Autocompletion
           -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
           group_index = 0,
         },
-        { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },
+        { name = 'snippets', priority = 11 }, -- Custom snippets
+        { name = 'lazydev', group_index = 0, priority = 10 }, -- Improved lua_ls
+        { name = 'nvim_lua', priority = 9 }, -- Nvim lua api
+        { name = 'nvim_lsp', priority = 8 }, -- LSP
+        { name = 'buffer', priority = 7 }, -- Text within current buffer
+        { name = 'async_path', priority = 7 }, -- Path
       },
     }
   end,
