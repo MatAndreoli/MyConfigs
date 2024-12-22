@@ -48,6 +48,16 @@ return { -- Fuzzy Finder (files, lsp, etc)
       -- You can put your default mappings / updates / etc. in here
       --  All the info you're looking for is in `:help telescope.setup()`
       --
+      pickers = {
+        find_files = {
+          hidden = true,
+        },
+        live_grep = {
+          additional_args = function(opts)
+            return { '--hidden' }
+          end,
+        },
+      },
       defaults = {
         scroll_strategy = 'limit',
         --   mappings = {

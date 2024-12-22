@@ -15,10 +15,10 @@ return { -- You can easily change to a different colorscheme.
     vim.cmd.hi 'Comment gui=none'
   end,
   opts = {
-    transparent = true,
-    styles = {
-      sidebars = 'transparent',
-      floats = 'transparent',
-    },
+    -- transparent = true,
+    -- styles = {
+    --   sidebars = 'transparent',
+    --   floats = 'transparent',
+    -- },
   },
 }

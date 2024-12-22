@@ -10,7 +10,6 @@ local state = {
 }
 
 local function create_floating_window(opts)
-  print(opts.size)
   opts = opts or {}
   local width = opts.width or math.floor(vim.o.columns * (opts.size or 0.8))
   local height = opts.height or math.floor(vim.o.lines * (opts.size or 0.8))

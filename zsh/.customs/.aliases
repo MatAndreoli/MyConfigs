@@ -8,9 +8,17 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
-alias nv='nvim'
 alias la='ls -a'
 alias ll='ls -al'
+nv() {
+  if [[ -d "$1" ]]; then
+    nvim --cmd "cd $1"
+    return
+  fi
+  nvim $1
+}
+alias nvrc='nv ~/.config/nvim/'
+alias tmuxrc='nv ~/.tmux.conf'
 
 # Updates
 alias update='_ apt update && _ apt list --upgradable'

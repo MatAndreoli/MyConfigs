@@ -47,7 +47,6 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
-  require 'plugins.themes.tokyonight',
   { import = 'plugins' },
 
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
@@ -75,6 +74,8 @@ require('lazy').setup({
     },
   },
 })
+
+vim.cmd('colorscheme ' .. require 'settings.current_theme')
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
