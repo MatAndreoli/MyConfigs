@@ -78,6 +78,7 @@ return {
         },
       },
       menu = {
+        max_height = 100,
         border = {
           { '󰙎', 'DiagnosticHint' },
           { '─', 'Comment' },

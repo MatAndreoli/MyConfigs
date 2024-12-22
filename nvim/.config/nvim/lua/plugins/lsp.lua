@@ -60,6 +60,10 @@ return {
         },
       }
 
+      require('mason-lspconfig').setup {
+        ensure_installed = { 'lua_ls', 'jdtls', 'cssls' },
+      }
+
       local ensure_installed = vim.tbl_keys(opts.servers or {})
       vim.list_extend(ensure_installed, {
         'stylua',
