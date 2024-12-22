@@ -5,7 +5,7 @@ vim.opt.shiftwidth = 2
 vim.g.python_host_prog = '~/.venvs/nvim/bin/python3'
 vim.g.python3_host_prog = '~/.venvs/nvim/bin/python3'
 
-vim.opt.autochdir = true
+vim.opt.autochdir = false
 
 vim.opt.autoread = true
 
