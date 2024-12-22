@@ -1,0 +1,17 @@
+#!/bin/sh
+
+tmux_sessions_fzf() {
+	tmux ls | fzf | cut -d: -f1
+}
+alias tx='tmux'
+alias txls='tmux ls'
+alias txs='tmux new -s $1'
+alias txsd='tmux new -ds $1'
+alias txa='tmux a'
+alias txat='tmux a -t $(tmux_sessions_fzf)'
+alias txk='tmux kill-server'
+alias txko='tmux kill-session -a'
+txkd() {
+	txls | grep -v attached | awk 'BEGIN{FS=":"}{print $1}' | xargs -n 1 tmux kill-session -t || echo 'No sessions to kill'
+}
+alias txkt='tmux kill-session -t $(tmux_sessions_fzf)'
