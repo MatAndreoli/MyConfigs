@@ -2,6 +2,7 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.wrap = true
+vim.opt.swapfile = false
 
 vim.g.python_host_prog = '~/.venvs/nvim/bin/python3'
 vim.g.python3_host_prog = '~/.venvs/nvim/bin/python3'

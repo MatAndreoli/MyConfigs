@@ -1,4 +1,5 @@
 require 'config.lazy'
+require 'config.highlights'
 
 vim.cmd 'colorscheme onedark_vivid'
 
