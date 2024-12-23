@@ -1,6 +1,7 @@
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
+vim.opt.wrap = true
 
 vim.g.python_host_prog = '~/.venvs/nvim/bin/python3'
 vim.g.python3_host_prog = '~/.venvs/nvim/bin/python3'
@@ -12,6 +13,18 @@ vim.opt.autoread = true
 vim.opt.foldenable = true
 vim.opt.foldmethod = 'indent'
 vim.opt.foldlevelstart = 99
+
+vim.opt.sessionoptions = {
+  'buffers',
+  'curdir',
+  'tabpages',
+  'winsize',
+  'help',
+  'globals',
+  'skiprtp',
+  'folds',
+  'localoptions',
+}
 
 -- Set <space> as the leader key
 -- See `:help mapleader`

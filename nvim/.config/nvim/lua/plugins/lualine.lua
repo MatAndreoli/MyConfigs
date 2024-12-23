@@ -38,6 +38,10 @@ return {
       cond = hide_in_width,
     }
 
+    local function get_python_venv()
+      return ' ' .. vim.env.VIRTUAL_ENV_PROMPT
+    end
+
     require('lualine').setup {
       options = {
         icons_enabled = true,
@@ -52,7 +56,15 @@ return {
       },
       sections = {
         lualine_a = { mode },
-        lualine_b = { 'branch' },
+        lualine_b = {
+          'branch',
+          {
+            get_python_venv,
+            cond = function()
+              return vim.bo.filetype == 'python'
+            end,
+          },
+        },
         lualine_c = { filename },
         lualine_x = {
           diagnostics,

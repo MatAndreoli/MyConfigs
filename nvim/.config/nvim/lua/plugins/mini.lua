@@ -60,6 +60,9 @@ return { -- Collection of various small independent plugins/modules
     }
 
     require('mini.icons').setup {
+      filetype = {
+        dotenv = { glyph = '', hl = 'MiniIconsYellow' },
+      },
       lsp = { -- Icons stollen from lspkind.nvim
         text = { glyph = '󰉿' },
         method = { glyph = '󰆧' },

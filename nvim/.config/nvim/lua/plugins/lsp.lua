@@ -8,13 +8,55 @@ return {
       library = {
         -- Load luvit types when the `vim.uv` word is found
         { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        { path = 'LazyVim', words = { 'LazyVim' } },
+        -- { path = "snacks.nvim", words = { "Snacks" } },
+        { path = 'lazy.nvim', words = { 'LazyVim' } },
       },
     },
   },
   { 'Bilal2453/luvit-meta', lazy = true },
   {
+
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    event = 'VeryLazy',
+    opts = {
+      ensure_installed = {
+        'black',
+        'clangd',
+        'cpptools',
+        'cssls',
+        'docker_compose_language_service',
+        'dockerls',
+        'eslint',
+        'eslint_d',
+        'google-java-format',
+        'html',
+        'java-debug-adapter',
+        'java-test',
+        'jdtls',
+        'jsonls',
+        'jsonlint',
+        'lua_ls',
+        'nginx_language_server',
+        'prettier',
+        'pylint',
+        'pyright',
+        'pylsp',
+        'ruff',
+        'shfmt',
+        'sonarlint-language-server',
+        'stylua',
+        'ts_ls',
+        'yamlls',
+      },
+      integrations = {
+        ['mason-lspconfig'] = true,
+      },
+    },
+  },
+  {
     'neovim/nvim-lspconfig',
-    event = 'BufReadPre',
+    event = 'VeryLazy',
     dependencies = {
       'saghen/blink.cmp',
       'williamboman/mason.nvim',
@@ -37,6 +79,7 @@ return {
         pylsp = {},
         ts_ls = {},
         yamlls = {},
+        pyright = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -63,11 +106,14 @@ return {
 
       require('mason-lspconfig').setup {
         ensure_installed = { 'lua_ls', 'jdtls', 'cssls' },
+        run_on_start = true,
+        start_delay = 1000,
       }
 
       local ensure_installed = vim.tbl_keys(opts.servers or {})
       vim.list_extend(ensure_installed, {
         'stylua',
+        'black',
         'eslint_d',
         'jsonlint',
         'pylint',
@@ -96,7 +142,9 @@ return {
         if server ~= 'jdtls' then
           -- Merge capabilities using blink.cmp's recommended approach
           config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
-          require('lspconfig')[server].setup(config)
+          if server ~= 'ruff_lsp' then
+            require('lspconfig')[server].setup(config)
+          end
         end
       end
 

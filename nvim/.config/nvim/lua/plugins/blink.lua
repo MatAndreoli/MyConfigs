@@ -30,7 +30,13 @@ return {
       nerd_font_variant = 'mono',
     },
     sources = {
-      default = { 'lsp', 'path', 'luasnip', 'snippets', 'buffer' },
+      default = { 'lsp', 'path', 'luasnip', 'snippets', 'buffer', 'markdown' },
+      -- completion = {
+      --   enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'markdown' },
+      -- },
+      providers = {
+        markdown = { name = 'RenderMarkdown', module = 'render-markdown.integ.blink' },
+      },
     },
     completion = {
       keyword = { range = 'prefix' },
