@@ -12,6 +12,17 @@ return {
           wrap = 'wrap',
         },
       },
+      previewers = {
+        builtin = {
+          extensions = {
+            ['png'] = { 'chafa', '{file}', '--format=symbols' },
+            ['jpg'] = { 'chafa', '{file}', '--format=symbols' },
+            ['jpeg'] = { 'chafa', '{file}', '--format=symbols' },
+            ['gif'] = { 'chafa', '{file}', '--format=symbols' },
+            ['webp'] = { 'chafa', '{file}', '--format=symbols' },
+          },
+        },
+      },
       git = {
         icons = {
           ['M'] = { icon = '', color = 'yellow' },

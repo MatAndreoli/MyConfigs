@@ -37,6 +37,7 @@ return {
         'jsonls',
         'jsonlint',
         'lua_ls',
+        'marksman',
         'nginx_language_server',
         'prettier',
         'pylint',
