@@ -52,28 +52,28 @@ vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = '[S]ave current buffer', silent 
 
 vim.keymap.set('n', 'n', 'nzt')
 
-vim.keymap.set('n', '<leader>to', ':tabnew<CR>', { desc = '[T]ab [O]pen' })
-vim.keymap.set('n', '<leader>tx', ':tabclose<CR>', { desc = '[T]ab close' })
+vim.keymap.set('n', '<leader>to', ':tabnew<CR>', { desc = '[T]ab [O]pen', silent = true })
+vim.keymap.set('n', '<leader>tx', ':tabclose<CR>', { desc = '[T]ab close', silent = true })
 -- vim.keymap.set('n', '<leader>tn', ':tabn<CR>', { desc = '[T]ab [N]ext' })
 -- vim.keymap.set('n', '<leader>tp', ':tabp<CR>', { desc = '[T]ab [P]revious' })
 
 vim.keymap.set('v', 'p', '"_dP')
 
-vim.keymap.set('n', '<Up>', ':resize -2<CR>')
-vim.keymap.set('n', '<Down>', ':resize +2<CR>')
-vim.keymap.set('n', '<Left>', ':vertical resize -2<CR>')
-vim.keymap.set('n', '<Right>', ':vertical resize +2<CR>')
+vim.keymap.set('n', '<Up>', ':resize -2<CR>', { silent = true })
+vim.keymap.set('n', '<Down>', ':resize +2<CR>', { silent = true })
+vim.keymap.set('n', '<Left>', ':vertical resize -2<CR>', { silent = true })
+vim.keymap.set('n', '<Right>', ':vertical resize +2<CR>', { silent = true })
 
 vim.keymap.set('n', '<leader>wv', '<C-w>v', { desc = 'Split window [V]ertically' })
 vim.keymap.set('n', '<leader>wh', '<C-w>s', { desc = 'Split window [H]orizontally' })
 vim.keymap.set('n', '<leader>se', '<C-w>=', { desc = 'Make windows [S]ize [E]qually' })
-vim.keymap.set('n', '<leader>xs', ':close<CR>', { desc = 'Close current split window' })
+vim.keymap.set('n', '<leader>xs', ':close<CR>', { desc = 'Close current split window', silent = true })
 
-vim.keymap.set('n', '<Tab>', ':bnext<CR>', { desc = 'Go to next buffer' })
-vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', { desc = 'Go to previous buffer' })
-vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', { desc = 'Close current buffer' })
+vim.keymap.set('n', '<Tab>', ':bnext<CR>', { desc = 'Go to next buffer', silent = true })
+vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', { desc = 'Go to previous buffer', silent = true })
+vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', { desc = 'Close current buffer', silent = true })
 
-vim.keymap.set('n', '<C-M-j>', ':cnext<CR>')
-vim.keymap.set('n', '<C-M-k>', ':cprevious<CR>')
+vim.keymap.set('n', '<C-M-j>', ':cnext<CR>', { silent = true })
+vim.keymap.set('n', '<C-M-k>', ':cprevious<CR>', { silent = true })
 
 vim.keymap.set('n', '<leader>ch', vim.lsp.buf.hover, { desc = '[C]ode [H]over Documentation' })

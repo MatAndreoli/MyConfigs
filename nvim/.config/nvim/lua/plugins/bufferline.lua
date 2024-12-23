@@ -1,5 +1,6 @@
 return {
   'akinsho/bufferline.nvim',
+  event = 'BufWinEnter',
   dependencies = {
     'moll/vim-bbye',
     'nvim-tree/nvim-web-devicons',

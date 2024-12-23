@@ -1,5 +1,6 @@
 return {
   'nvim-lualine/lualine.nvim',
+  event = 'VimEnter',
   config = function()
     local mode = {
       'mode',
@@ -22,9 +23,9 @@ return {
     local diagnostics = {
       'diagnostics',
       sources = { 'nvim_diagnostic' },
-      sections = { 'error', 'warn' },
+      sections = { 'error', 'warn', 'info', 'hint' },
       symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
-      colored = false,
+      colored = true,
       update_in_insert = false,
       always_visible = false,
       cond = hide_in_width,
@@ -32,7 +33,7 @@ return {
 
     local diff = {
       'diff',
-      colored = false,
+      colored = true,
       symbols = { added = ' ', modified = ' ', removed = ' ' }, -- changes diff symbols
       cond = hide_in_width,
     }

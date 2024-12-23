@@ -14,6 +14,7 @@ return {
   { 'Bilal2453/luvit-meta', lazy = true },
   {
     'neovim/nvim-lspconfig',
+    event = 'BufReadPre',
     dependencies = {
       'saghen/blink.cmp',
       'williamboman/mason.nvim',

@@ -1,5 +1,6 @@
 return {
   'stevearc/oil.nvim',
+  event = 'VeryLazy',
   opts = {
     watch_for_changes = true,
     keymaps = {
