@@ -88,6 +88,7 @@ return {
           },
         },
       },
+      ghost_text = { enabled = false },
     },
   },
   opts_extend = { 'sources.default' },
