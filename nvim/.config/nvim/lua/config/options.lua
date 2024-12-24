@@ -1,7 +1,7 @@
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
-vim.opt.wrap = true
+vim.opt.wrap = false
 vim.opt.swapfile = false
 
 vim.g.python_host_prog = '~/.venvs/nvim/bin/python3'
@@ -77,7 +77,8 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes'
 
 -- Decrease update time
-vim.opt.updatetime = 250
+vim.opt.updatetime = 50
+vim.opt.colorcolumn = '80'
 
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
