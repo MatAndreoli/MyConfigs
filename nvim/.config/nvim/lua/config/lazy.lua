@@ -32,6 +32,8 @@ require('lazy').setup({
     { import = 'lazyvim.plugins.extras.lang.python' },
     { import = 'lazyvim.plugins.extras.lang.markdown' },
     { import = 'lazyvim.plugins.extras.ui.smear-cursor' },
+    { import = 'lazyvim.plugins.extras.coding.blink' },
+    { import = 'lazyvim.plugins.extras.coding.luasnip' },
 
     -- Adding my plugins
     { import = 'plugins' },

@@ -1,6 +1,6 @@
 return {
   'ray-x/lsp_signature.nvim',
-  event = 'VeryLazy',
+  event = 'LazyFile',
   opts = {
     bind = true,
     handler_opts = {

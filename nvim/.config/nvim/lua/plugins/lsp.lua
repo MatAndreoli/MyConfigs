@@ -17,13 +17,10 @@ return {
   { 'Bilal2453/luvit-meta', lazy = true },
   {
     'neovim/nvim-lspconfig',
-    event = 'VeryLazy',
     dependencies = {
-      'saghen/blink.cmp',
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'ray-x/lsp_signature.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
       'j-hui/fidget.nvim',
     },
     opts = {

@@ -1,15 +1,5 @@
 return {
   'saghen/blink.cmp',
-  event = 'VeryLazy',
-  dependencies = {
-    'rafamadriz/friendly-snippets',
-    {
-      'L3MON4D3/LuaSnip',
-      version = 'v2.*',
-      build = 'make install_jsregexp',
-    },
-  },
-  version = '*',
   opts = {
     keymap = { preset = 'default' },
     snippets = {
@@ -26,14 +16,8 @@ return {
         require('luasnip').jump(direction)
       end,
     },
-    appearance = {
-      nerd_font_variant = 'mono',
-    },
     sources = {
-      default = { 'lsp', 'path', 'luasnip', 'snippets', 'buffer', 'markdown' },
-      -- completion = {
-      --   enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'markdown' },
-      -- },
+      default = { 'luasnip', 'markdown' },
       providers = {
         markdown = { name = 'RenderMarkdown', module = 'render-markdown.integ.blink' },
       },
@@ -91,5 +75,4 @@ return {
       ghost_text = { enabled = false },
     },
   },
-  opts_extend = { 'sources.default' },
 }
