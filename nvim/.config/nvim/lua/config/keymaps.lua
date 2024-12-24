@@ -5,8 +5,6 @@
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
-vim.keymap.set('i', ';;', '<Esc>', { noremap = true, silent = true })
-
 vim.keymap.set('n', '<C-a>', ':qa!<CR>', { desc = 'Quit all (without saving "!")', silent = true })
 vim.keymap.set('n', '<C-x>', ':wqa<CR>', { desc = 'Quit all', silent = true })
 
