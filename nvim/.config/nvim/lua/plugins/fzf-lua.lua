@@ -14,4 +14,14 @@ return {
       },
     },
   },
+  keys = {
+    -- Git
+    { '<leader>gt', '<cmd>FzfLua git_stash<CR>', desc = 'Stash' },
+    { '<leader>gC', '<cmd>FzfLua git_bcommits<CR>', desc = 'Commits of current buffer' },
+    { '<leader>gn', '<cmd>FzfLua git_branches<CR>', desc = 'Branches' },
+
+    -- Buffers
+    { '<leader>/', '<cmd>FzfLua blines<CR>', desc = 'Fuzzily search in current buffer' },
+    { '<leader>s/', '<cmd>FzfLua lines<CR>', desc = 'Fuzzily search in open buffers' },
+  },
 }
