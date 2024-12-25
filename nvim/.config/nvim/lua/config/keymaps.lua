@@ -2,6 +2,9 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = '[S]ave current buffer', silent = true })
 
+-- Editor
+vim.keymap.set('i', 'jk', '<Esc>')
+
 -- Better navigation
 vim.keymap.set('n', 'n', 'nzz', { noremap = true })
 vim.keymap.set('n', 'N', 'Nzz', { noremap = true })
