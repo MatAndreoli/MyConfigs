@@ -9,9 +9,40 @@
 (defcfg
   process-unmapped-keys yes
 )
-(defsrc
-  caps a   s   d   f   j   k   l   ;
+
+#|
+(deflocalkeys-linux
+  ´ 26
+  ' 41
+  [ 27
+  ] 43
+  ç 39
+  ~ 40
+  ; 53
+  \ 86
+  / 89
 )
+|#
+
+(deflocalkeys-win
+  ´ 219
+  ' 192
+  ] 220
+  [ 221
+  ç 186
+  ~ 222
+  ; 191
+  \ 226
+  / 193
+)
+
+(defsrc
+  q w e r t y u i o p
+  caps a s d f g h j k l ç
+  z x c v b n m , .
+  spc
+)
+
 (defvar
   ;; Note: consider using different time values for your different fingers.
   ;; For example, your pinkies might be slower to release keys and index
@@ -19,7 +50,7 @@
   tap-time 200
   hold-time 150
   hold-pinkies-time 1000
-  hold-ring-time 300
+  hold-ring-time 400
 
   left-hand-keys (
     q w e r t
@@ -28,16 +59,30 @@
   )
   right-hand-keys (
     y u i o p
-    h j k l ;
+    h j k l ç
     n m , . /
   )
 )
+
 (deflayer base
-  @escctrl @a  @s  @d  @f  @j  @k  @l  @;
+  q w e r t y u i o p
+  @escctrl @a @s @d @f g h @j @k @l @ç
+  z x c v b n m , .
+  @nav
+)
+
+(deflayer nav
+  ' S-9 S-0 ´ ~  [ ] S-- / \
+  1 2 3 _ 4 5 6 7 _ 8 9
+  _ _ S-; 0 _ @mwl @mwd @mwu @mwr
+  _
 )
 
 (deflayer nomods
-  caps a   s   d   f   j   k   l   ;
+  q w e r t y u i o p
+  caps a s d f g h j k l ç
+  z x c v b n m , .
+  spc
 )
 (deffakekeys
   to-base (layer-switch base)
@@ -48,7 +93,9 @@
     (on-idle-fakekey to-base tap 20)
   )
 
-  escctrl (tap-hold 100 500 esc caps)
+  nav (tap-hold $tap-time 300 spc (layer-toggle nav))
+
+  escctrl (tap-hold $tap-time 500 esc caps)
   a (tap-hold-release-keys $tap-time $hold-pinkies-time (multi a @tap) lmet $left-hand-keys)
   s (tap-hold-release-keys $tap-time $hold-ring-time (multi s @tap) lalt $left-hand-keys)
   d (tap-hold-release-keys $tap-time $hold-time (multi d @tap) lsft $left-hand-keys)
@@ -56,5 +103,12 @@
   j (tap-hold-release-keys $tap-time $hold-time (multi j @tap) lctl $right-hand-keys)
   k (tap-hold-release-keys $tap-time $hold-time (multi k @tap) lsft $right-hand-keys)
   l (tap-hold-release-keys $tap-time $hold-ring-time (multi l @tap) lalt $right-hand-keys)
-  ; (tap-hold-release-keys $tap-time $hold-pinkies-time (multi ; @tap) lmet $right-hand-keys)
+  ç (tap-hold-release-keys $tap-time $hold-pinkies-time (multi ç @tap) lmet $right-hand-keys)
+
+  ;; Mouse wheel emulation
+  mwu (mwheel-up    50 120)
+  mwd (mwheel-down  50 120)
+  mwl (mwheel-left  50 120)
+  mwr (mwheel-right 50 120)
 )
+
