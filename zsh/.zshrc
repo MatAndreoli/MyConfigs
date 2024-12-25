@@ -30,6 +30,11 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
+function zvm_after_init() {
+  bindkey "^P" history-beginning-search-backward
+  bindkey "^N" history-beginning-search-forward
+}
+
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 
@@ -54,8 +59,6 @@ export ZVM_VI_SURROUND_BINDKEY=s-prefix
 
 # Keybindings
 bindkey -e
-bindkey "^P" history-beginning-search-backward
-bindkey "^N" history-beginning-search-forward
 
 # History
 HISTSIZE=5000
