@@ -36,13 +36,6 @@
   / 193
 )
 
-(defsrc
-  q w e r t y u i o p
-  caps a s d f g h j k l ç
-  z x c v b n m , .
-  spc
-)
-
 (defvar
   ;; Note: consider using different time values for your different fingers.
   ;; For example, your pinkies might be slower to release keys and index
@@ -64,25 +57,32 @@
   )
 )
 
+(defsrc
+  tab     q     w    e    r    t    y    u    i    o    p
+  caps    a     s    d    f    g    h    j    k    l    ç
+  lsft    \     z    x    c    v    b    n    m    ,    .
+                              spc
+)
+
 (deflayer base
-  q w e r t y u i o p
-  @escctrl @a @s @d @f g h @j @k @l @ç
-  z x c v b n m , .
-  @nav
+  tab     q     w    e    r    t    y    u    i    o    p
+  @esc    @a    @s   @d   @f   g    h    @j   @k   @l   @ç
+  lsft    \     z    x    c    v    b    n    m    ,    .
+                              @nav
 )
 
 (deflayer nav
-  ' S-9 S-0 ´ ~  [ ] S-- / \
-  1 2 3 _ 4 5 6 7 _ 8 9
-  _ _ S-; 0 _ @mwl @mwd @mwu @mwr
-  _
+  lrld    '     S-9  S-0  ´    ~    [    ]    S--  /    \
+  1       2     3    _    4    5    6    7    _   8    9
+  XX      XX    XX   XX   S-;  0    XX   @mwl @mwd @mwu @mwr
+                              XX
 )
 
 (deflayer nomods
-  q w e r t y u i o p
-  caps a s d f g h j k l ç
-  z x c v b n m , .
-  spc
+  tab     q     w    e    r    t    y    u    i    o    p
+  caps    a     s    d    f    g    h    j    k    l    ç
+  lsft    \     z    x    c    v    b    n    m    ,    .
+                              spc
 )
 (deffakekeys
   to-base (layer-switch base)
@@ -95,7 +95,7 @@
 
   nav (tap-hold $tap-time 300 spc (layer-toggle nav))
 
-  escctrl (tap-hold $tap-time 500 esc caps)
+  esc (tap-hold $tap-time 500 esc caps)
   a (tap-hold-release-keys $tap-time $hold-pinkies-time (multi a @tap) lmet $left-hand-keys)
   s (tap-hold-release-keys $tap-time $hold-ring-time (multi s @tap) lalt $left-hand-keys)
   d (tap-hold-release-keys $tap-time $hold-time (multi d @tap) lsft $left-hand-keys)
