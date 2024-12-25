@@ -30,12 +30,16 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+
 # Add in snippets
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::mvn
 zinit snippet OMZP::sudo
-zinit snippet 'https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh'
+zinit ice lucid wait
+zinit snippet OMZP::fzf
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -46,6 +50,7 @@ zinit cdreplay -q
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export EDITOR=$(which nvim)
+export ZVM_VI_SURROUND_BINDKEY=s-prefix
 
 # Keybindings
 bindkey -e
