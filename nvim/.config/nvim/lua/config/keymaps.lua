@@ -56,8 +56,8 @@ vim.keymap.set('t', '<C-t>', '<C-\\><C-n>:q<CR>', { desc = 'Close terminal split
 -- LSP and Diagnostics
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 vim.keymap.set('n', '<leader>ch', vim.lsp.buf.hover, { desc = '[C]ode [H]over Documentation' })
-vim.keymap.set('n', '<C-M-j>', ':cnext<CR>', { silent = true })
-vim.keymap.set('n', '<C-M-k>', ':cprevious<CR>', { silent = true })
+vim.keymap.set('n', '<M-f>', ':cnext<CR>', { silent = true })
+vim.keymap.set('n', '<M-d>', ':cprevious<CR>', { silent = true })
 
 -- Text manipulation
 vim.keymap.set('v', '>', '>gv', { desc = 'Indent and keep selection' })
