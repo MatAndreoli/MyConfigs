@@ -1,0 +1,128 @@
+(include localkeys.kbd)
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defvirtualkeys
+  to-base (layer-switch baselayout)
+)
+
+(deftemplate homerowmod (timeouttap timeouthold keytap keyhold)
+	(tap-hold $timeouttap $timeouthold
+		(multi $keytap  @.tp)
+		$keyhold
+	)
+)
+
+(deflayermap (baselayout)
+  f    (t! homerowmod $tap-time 160 f lsft)
+  j    (t! homerowmod $tap-time 160 j lsft)
+  d    (t! homerowmod $tap-time 300 d lctl)
+  k    (t! homerowmod $tap-time 300 k lctl)
+  s    (t! homerowmod $tap-time 400 s lalt)
+  l    (t! homerowmod $tap-time 400 l lalt)
+  a    (t! homerowmod $tap-time 450 a lmet)
+  spc  (t! homerowmod $tap-time 200 spc @nav)
+  lsft (t! homerowmod $tap-time 200 lsft @numl)
+  ;    (t! homerowmod $tap-time 200 ; @numr)
+  caps (t! homerowmod $tap-time $hold-time esc caps)
+  q    (multi q @.tp)
+  w    (multi w @.tp)
+  e    (multi e @.tp)
+  r    (multi r @.tp)
+  t    (multi t @.tp)
+  y    (multi y @.tp)
+  u    (multi u @.tp)
+  i    (multi i @.tp)
+  o    (multi o @.tp)
+  p    (multi p @.tp)
+  g    (multi g @.tp)
+  h    (multi h @.tp)
+  z    (multi z @.tp)
+  x    (multi x @.tp)
+  c    (multi c @.tp)
+  v    (multi v @.tp)
+  b    (multi b @.tp)
+  n    (multi n @.tp)
+  m    (multi m @.tp)
+)
+
+(deflayermap (typing)
+  a (unmod a)
+  b (unmod b)
+  c (unmod c)
+  d (unmod d)
+  e (unmod e)
+  f (unmod f)
+  g (unmod g)
+  h (unmod h)
+  i (unmod i)
+  j (unmod j)
+  k (unmod k)
+  l (unmod l)
+  m (unmod m)
+  n (unmod n)
+  o (unmod o)
+  p (unmod p)
+  q (unmod q)
+  r (unmod r)
+  s (unmod s)
+  t (unmod t)
+  u (unmod u)
+  v (unmod v)
+  w (unmod w)
+  x (unmod x)
+  y (unmod y)
+  z (unmod z)
+)
+
+(defsrc
+  esc
+  '       1     2    3    4    5    6    7    8    9    0
+  tab     q     w    e    r    t    y    u    i    o    p
+  caps    a     s    d    f    g    h    j    k    l    ç
+  lsft    \     z    x    c    v    b    n    m    ,    .    ;    rsft
+  lctl    lmet  lalt          spc
+)
+
+(deflayer numpad
+  ∅
+  ∅       ∅     ∅    ∅    ∅    ∅    ∅    _    _    _    ∅
+  ∅       ∅     S-4  S-5  S-7  ∅    ∅    4    5    6    ∅
+  ∅       ∅     S-1  S-2  S-3  ∅    +    1    2    3    ∅
+  ∅       ∅     ∅    ∅    ∅    ∅    ∅    *    0    -    =    _    _
+  ∅       ∅     ∅              ∅
+)
+
+(deflayer nav
+  lrld
+  _       _     _    _    _    _    _    _    _    _    _
+  _       _     '    S-9  S-0  [    _    S--  /    \    _
+  _       _     ´    ~    S-;  ]    _    _    bspc del  _
+  _       _     _    _    S-[  S-]  _    @mwl @mwd @mwu @mwr _    _
+  _       _     _              _
+)
+
+(defvar
+  tap-time 220
+  hold-time 275
+)
+
+(defalias
+  .tp (multi
+    (one-shot 95 (layer-while-held typing))
+    (on-idle 95 tap-vkey to-base )
+  )
+
+  nav (tap-hold $tap-time $hold-time spc (layer-toggle nav))
+  numl (tap-hold $tap-time $hold-time lsft (layer-toggle numpad))
+  numr (tap-hold $tap-time $hold-time ; (layer-toggle numpad))
+
+  esc (tap-hold $tap-time 500 esc caps)
+
+  ;; Mouse wheel emulation
+  mwu (mwheel-up    50 120)
+  mwd (mwheel-down  50 120)
+  mwl (mwheel-left  50 120)
+  mwr (mwheel-right 50 120)
+)

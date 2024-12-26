@@ -6,36 +6,9 @@
 ;; - pressing another key on the same half of the keyboard
 ;;   as the home row mod will activate an early tap action
 
+(include localkeys.kbd)
 (defcfg
   process-unmapped-keys yes
-)
-
-#|
-(deflocalkeys-linux
-  ´ 26
-  ' 41
-  [ 27
-  ] 43
-  ç 39
-  ~ 40
-  ; 53
-  \ 86
-  / 89
-)
-|#
-
-(deflocalkeys-win
-  ´ 219
-  ' 192
-  ] 220
-  [ 221
-  ç 186
-  ~ 222
-  ; 191
-  \ 226
-  / 193
-  * 106
-  + 107
 )
 
 (defsrc
@@ -57,7 +30,6 @@
   lctl    lmet  lalt          @nav
 )
 
-;; numpad at the right, keeping the 'd' free for shift
 (deflayer numpad
   ∅
   ∅       ∅     ∅    ∅    ∅    ∅    ∅    _    _    _    ∅
@@ -71,7 +43,7 @@
   lrld
   _       _     _    _    _    _    _    _    _    _    _
   _       _     '    S-9  S-0  [    _    S--  /    \    _
-  _       _     ´    ~    S-;  ]    _    bspc _    del  _
+  _       _     ´    ~    S-;  ]    _    _    bspc del  _
   _       _     _    _    S-[  S-]  _    @mwl @mwd @mwu @mwr _    _
   _       _     _              _
 )
@@ -93,7 +65,7 @@
   ;; Note: consider using different time values for your different fingers.
   ;; For example, your pinkies might be slower to release keys and index
   ;; fingers faster.
-  tap-time 300
+  tap-time 220
   hold-time 275
   hold-pinkies-time 1000
   hold-ring-time 400
@@ -126,10 +98,10 @@
   esc (tap-hold $tap-time 500 esc caps)
   a (tap-hold-release-keys $tap-time $hold-pinkies-time (multi a @tap) lmet $left-hand-keys)
   s (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lalt $left-hand-keys)
-  d (tap-hold-release-keys $tap-time $hold-time (multi d @tap) lsft $left-hand-keys)
-  f (tap-hold-release-keys $tap-time $hold-time (multi f @tap) lctl $left-hand-keys)
-  j (tap-hold-release-keys $tap-time $hold-time (multi j @tap) lctl $right-hand-keys)
-  k (tap-hold-release-keys $tap-time $hold-time (multi k @tap) lsft $right-hand-keys)
+  d (tap-hold-release-keys $tap-time $hold-time (multi d @tap) lctl $left-hand-keys)
+  f (tap-hold-release-keys $tap-time $hold-time (multi f @tap) lsft $left-hand-keys)
+  j (tap-hold-release-keys $tap-time $hold-time (multi j @tap) lsft $right-hand-keys)
+  k (tap-hold-release-keys $tap-time $hold-time (multi k @tap) lctl $right-hand-keys)
   l (tap-hold-release-keys $tap-time $hold-time (multi l @tap) lalt $right-hand-keys)
   ç (tap-hold-release-keys $tap-time $hold-pinkies-time (multi ç @tap) lmet $right-hand-keys)
 
@@ -139,3 +111,4 @@
   mwl (mwheel-left  50 120)
   mwr (mwheel-right 50 120)
 )
+
