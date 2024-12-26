@@ -1,4 +1,3 @@
-#|
 (deflocalkeys-linux
   ´ 26
   ' 41
@@ -9,8 +8,9 @@
   ; 53
   \ 86
   / 89
+  * 55
+  + 78
 )
-|#
 
 (deflocalkeys-win
   ´ 219
