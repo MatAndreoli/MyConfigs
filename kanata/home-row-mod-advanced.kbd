@@ -96,14 +96,14 @@
   sls (tap-dance 300 ((layer-toggle nav) (layer-toggle numpad)))
 
   esc (tap-hold $tap-time 500 esc caps)
-  a (tap-hold-release-keys $tap-time $hold-pinkies-time (multi a @tap) lmet $left-hand-keys)
-  s (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lalt $left-hand-keys)
-  d (tap-hold-release-keys $tap-time $hold-time (multi d @tap) lctl $left-hand-keys)
-  f (tap-hold-release-keys $tap-time $hold-time (multi f @tap) lsft $left-hand-keys)
-  j (tap-hold-release-keys $tap-time $hold-time (multi j @tap) lsft $right-hand-keys)
-  k (tap-hold-release-keys $tap-time $hold-time (multi k @tap) lctl $right-hand-keys)
-  l (tap-hold-release-keys $tap-time $hold-time (multi l @tap) lalt $right-hand-keys)
-  ç (tap-hold-release-keys $tap-time $hold-pinkies-time (multi ç @tap) lmet $right-hand-keys)
+  a (tap-hold-release-keys $tap-time 450 (multi a @tap) lmet $left-hand-keys)
+  s (tap-hold-release-keys $tap-time 400 (multi s @tap) lalt $left-hand-keys)
+  d (tap-hold-release-keys $tap-time 300 (multi d @tap) lctl $left-hand-keys)
+  f (tap-hold-release-keys $tap-time 160 (multi f @tap) lsft $left-hand-keys)
+  j (tap-hold-release-keys $tap-time 160 (multi j @tap) lsft $right-hand-keys)
+  k (tap-hold-release-keys $tap-time 300 (multi k @tap) lctl $right-hand-keys)
+  l (tap-hold-release-keys $tap-time 400 (multi l @tap) lalt $right-hand-keys)
+  ç (tap-hold-release-keys $tap-time 450 (multi ç @tap) lmet $right-hand-keys)
 
   ;; Mouse wheel emulation
   mwu (mwheel-up    50 120)
@@ -111,4 +111,3 @@
   mwl (mwheel-left  50 120)
   mwr (mwheel-right 50 120)
 )
-
