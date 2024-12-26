@@ -34,52 +34,61 @@
   ; 191
   \ 226
   / 193
+  * 106
+  + 107
 )
 
 (defsrc
+  esc
   '       1     2    3    4    5    6    7    8    9    0
   tab     q     w    e    r    t    y    u    i    o    p
   caps    a     s    d    f    g    h    j    k    l    ç
-  lsft    \     z    x    c    v    b    n    m    ,    .
-                              spc
+  lsft    \     z    x    c    v    b    n    m    ,    .    ;    rsft
+  lctl    lmet  lalt          spc
 )
 
 ;; home row mods
 (deflayer base
+  esc
   '       1     2    3    4    5    6    7    8    9    0
   tab     q     w    e    r    t    y    u    i    o    p
   @esc    @a    @s   @d   @f   g    h    @j   @k   @l   @ç
-  @nump   \     z    x    c    v    b    n    m    ,    .
-                              @nav
+  @numl   \     z    x    c    v    b    n    m    ,    .    @numr rsft
+  lctl    lmet  lalt          @nav
 )
 
 ;; numpad at the right, keeping the 'd' free for shift
 (deflayer numpad
+  ∅
   ∅       ∅     ∅    ∅    ∅    ∅    ∅    _    _    _    ∅
-  ∅       ∅     ∅    ∅    ∅    ∅    ∅    4    5    6    ∅
-  ∅       ∅     ∅    _    ∅    ∅    ∅    1    2    3    ∅
-  ∅       ∅     ∅    ∅    ∅    ∅    ∅    ∅    0    -    =
-                               ∅
+  ∅       ∅     S-4  S-5  S-7  ∅    ∅    4    5    6    ∅
+  ∅       ∅     S-1  S-2  S-3  ∅    +    1    2    3    ∅
+  ∅       ∅     ∅    ∅    ∅    ∅    ∅    *    0    -    =    _    _
+  ∅       ∅     ∅              ∅
 )
 
 (deflayer nav
+  lrld
   _       _     _    _    _    _    _    _    _    _    _
-  lrld    '     S-9  S-0  ´    ~    [    ]    S--  /    \
-  _       _     _    _    S-;  _    _    bspc _    del  _
-  _       _     _    _    _    _    _    @mwl @mwd @mwu @mwr
-                               _
+  _       _     '    S-9  S-0  [    _    S--  /    \    _
+  _       _     ´    ~    S-;  ]    _    bspc _    del  _
+  _       _     _    _    S-[  S-]  _    @mwl @mwd @mwu @mwr _    _
+  _       _     _              _
 )
 
 (deflayer nomods
+  esc
   '       1     2    3    4    5    6    7    8    9    0
   tab     q     w    e    r    t    y    u    i    o    p
   caps    a     s    d    f    g    h    j    k    l    ç
-  lsft    \     z    x    c    v    b    n    m    ,    .
-                              spc
+  lsft    \     z    x    c    v    b    n    m    ,    .    ;    rsft
+  lctl    lmet  lalt          spc
 )
+
 (deffakekeys
   to-base (layer-switch base)
 )
+
 (defvar
   ;; Note: consider using different time values for your different fingers.
   ;; For example, your pinkies might be slower to release keys and index
@@ -100,6 +109,7 @@
     n m , . /
   )
 )
+
 (defalias
   tap (multi
     (layer-switch nomods)
@@ -107,7 +117,11 @@
   )
 
   nav (tap-hold $tap-time $hold-time spc (layer-toggle nav))
-  nump (tap-hold $tap-time $hold-time lsft (layer-toggle numpad))
+  numl (tap-hold $tap-time $hold-time lsft (layer-toggle numpad))
+  numr (tap-hold $tap-time $hold-time ; (layer-toggle numpad))
+
+  ;; switch layers
+  sls (tap-dance 300 ((layer-toggle nav) (layer-toggle numpad)))
 
   esc (tap-hold $tap-time 500 esc caps)
   a (tap-hold-release-keys $tap-time $hold-pinkies-time (multi a @tap) lmet $left-hand-keys)
