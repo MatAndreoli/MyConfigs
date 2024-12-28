@@ -22,7 +22,7 @@
   "transparency_alpha": 220,
   "stackbar": {
     "height": 40,
-    "mode": "OnStack",
+    "mode": "Never",
     "tabs": {
       "width": 300
     }
