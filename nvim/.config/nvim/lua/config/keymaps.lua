@@ -1,6 +1,9 @@
 -- General
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = '[S]ave current buffer', silent = true })
+vim.keymap.set('n', '<leader><leader>x', ':so %<CR>', { desc = 'Source current buffer', silent = true })
+vim.keymap.set('n', '<M-x>', ':.lua<CR>', { desc = 'Source current buffer', silent = true })
+vim.keymap.set('v', '<M-x>', ':lua<CR>', { desc = 'Source current buffer', silent = true })
 
 -- Editor
 vim.keymap.set('i', 'jk', '<Esc>')
