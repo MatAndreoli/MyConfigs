@@ -9,7 +9,9 @@
   "border_width": 3,
   "border_offset": -1,
   "animation": {
-    "enabled": true
+    "enabled": true,
+    "fps": 120,
+    "duration": 300
   },
   "bar_configurations": ["C:/Users/andre/Documents/Komorebi/komorebi.bar.json"],
   "theme": {
