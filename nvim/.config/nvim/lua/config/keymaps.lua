@@ -67,3 +67,9 @@ vim.keymap.set('v', '>', '>gv', { desc = 'Indent and keep selection' })
 vim.keymap.set('v', '<', '<gv', { desc = 'Unindent and keep selection' })
 vim.keymap.set('v', 'p', '"_dP')
 vim.keymap.set({ 'n', 'v' }, 'd', '"_d')
+
+-- Tmux navigator
+vim.keymap.set('n', '<C-h>', ':TmuxNavigateLeft<CR>')
+vim.keymap.set('n', '<C-j>', ':TmuxNavigateDown<CR>')
+vim.keymap.set('n', '<C-k>', ':TmuxNavigateUp<CR>')
+vim.keymap.set('n', '<C-l>', ':TmuxNavigateRightCR>')

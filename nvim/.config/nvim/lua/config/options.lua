@@ -4,6 +4,11 @@ vim.opt.shiftwidth = 2
 vim.opt.wrap = false
 vim.opt.swapfile = false
 
+local handle = io.popen 'which zsh'
+local zsh_path = handle:read('*a'):gsub('\n', '')
+handle:close()
+vim.o.shell = zsh_path
+
 vim.g.python_host_prog = '~/.venvs/nvim/bin/python3'
 vim.g.python3_host_prog = '~/.venvs/nvim/bin/python3'
 
