@@ -7,6 +7,7 @@ vim.keymap.set('v', '<M-x>', ':lua<CR>', { desc = 'Source current buffer', silen
 
 -- Editor
 vim.keymap.set('i', 'jk', '<Esc>')
+vim.keymap.set('n', '<leader>i', ':%s/\\<<C-r><C-w>\\>//g<Left><Left>', { desc = 'Substitute word under cursor occurrences', noremap = true })
 
 -- Better navigation
 vim.keymap.set('n', 'n', 'nzz', { noremap = true })
