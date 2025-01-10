@@ -36,6 +36,7 @@ vim.keymap.set('n', '<Right>', ':vertical resize +2<CR>', { silent = true })
 
 -- Buffer management
 vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', { desc = 'Close current buffer', silent = true })
+vim.keymap.set('n', '<C-w>o', ':%bd|e#|bd#<CR>', { desc = 'Close all other buffers', silent = true })
 
 -- Tab management
 vim.keymap.set('n', '<leader>to', ':tabnew<CR>', { desc = '[T]ab [O]pen', silent = true })
