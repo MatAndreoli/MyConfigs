@@ -65,6 +65,8 @@ HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
+
+setopt auto_cd
 setopt appendhistory
 setopt sharehistory
 setopt hist_ignore_space
