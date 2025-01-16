@@ -1,5 +1,6 @@
 -- General
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<C-x><C-x>', ':qa!<CR>')
 vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = '[S]ave current buffer', silent = true })
 vim.keymap.set('n', '<leader><leader>x', ':so %<CR>', { desc = 'Source current buffer', silent = true })
 vim.keymap.set('n', '<M-x>', ':.lua<CR>', { desc = 'Source current buffer', silent = true })
@@ -10,10 +11,10 @@ vim.keymap.set('i', 'jk', '<Esc>')
 vim.keymap.set('n', '<leader>i', ':%s/\\<<C-r><C-w>\\>//g<Left><Left>', { desc = 'Substitute word under cursor occurrences', noremap = true })
 
 -- Better navigation
-vim.keymap.set('n', 'n', 'nzz', { noremap = true })
-vim.keymap.set('n', 'N', 'Nzz', { noremap = true })
-vim.keymap.set('n', '<C-d>', '<C-d>zt', { noremap = true })
-vim.keymap.set('n', '<C-u>', '<C-u>zt', { noremap = true })
+-- vim.keymap.set('n', 'n', 'nzz', { noremap = true })
+-- vim.keymap.set('n', 'N', 'Nzz', { noremap = true })
+-- vim.keymap.set('n', '<C-d>', '<C-d>zt', { noremap = true })
+-- vim.keymap.set('n', '<C-u>', '<C-u>zt', { noremap = true })
 vim.keymap.set('n', 'J', "mzJ'z")
 
 -- Window navigation (ldur)
@@ -74,4 +75,4 @@ vim.keymap.set({ 'n', 'v' }, 'd', '"_d')
 vim.keymap.set('n', '<C-h>', ':TmuxNavigateLeft<CR>')
 vim.keymap.set('n', '<C-j>', ':TmuxNavigateDown<CR>')
 vim.keymap.set('n', '<C-k>', ':TmuxNavigateUp<CR>')
-vim.keymap.set('n', '<C-l>', ':TmuxNavigateRightCR>')
+vim.keymap.set('n', '<C-l>', ':TmuxNavigateRight<CR>')
