@@ -1,0 +1,10 @@
+command = /bin/zsh
+
+theme = catppuccin-mocha
+background-opacity = 0.92
+
+# font-family = "JetBrainsMono Nerd Font"
+font-size = 12
+cursor-invert-fg-bg = true
+
+gtk-titlebar = false

@@ -15,7 +15,7 @@ vim.keymap.set('n', '<leader>i', ':%s/\\<<C-r><C-w>\\>//g<Left><Left>', { desc =
 -- vim.keymap.set('n', 'N', 'Nzz', { noremap = true })
 -- vim.keymap.set('n', '<C-d>', '<C-d>zt', { noremap = true })
 -- vim.keymap.set('n', '<C-u>', '<C-u>zt', { noremap = true })
-vim.keymap.set('n', 'J', "mzJ'z")
+vim.keymap.set('n', 'J', "mzJ'z :delmarks z<CR>")
 
 -- Window navigation (ldur)
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
