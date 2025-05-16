@@ -78,6 +78,12 @@ pve() {
   which python
 }
 
+pvef() {
+  venv_path=$(ls --color=never ~/.venvs/ | fzf)
+  source ~/.venvs/"$venv_path"/bin/activate
+  which python
+}
+
 #Minikube
 alias minikube="~/.my_configs/minikube"
 alias mkstart="minikube start"
