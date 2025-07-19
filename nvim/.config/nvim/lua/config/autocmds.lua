@@ -1,3 +1,27 @@
+-----------------------
+--- CUSTOM MACROS ---
+-----------------------
+
+local esc = vim.api.nvim_replace_termcodes('<ESC>', true, true, true)
+
+vim.api.nvim_create_augroup('JSLogMacro', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+  group = 'JSLogMacro',
+  pattern = { 'javascript', 'typescript' },
+  callback = function()
+    vim.fn.setreg('l', "yoconsole.log('" .. esc .. 'pa:' .. esc .. 'la, ' .. esc .. 'pl')
+  end,
+})
+
+vim.api.nvim_create_augroup('PythonLogMacro', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+  group = 'PythonLogMacro',
+  pattern = { 'python' },
+  callback = function()
+    vim.fn.setreg('l', "yoprint('" .. esc .. 'pa:' .. esc .. 'la, ' .. esc .. 'pl')
+  end,
+})
+
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
