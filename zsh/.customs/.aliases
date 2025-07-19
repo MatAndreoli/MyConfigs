@@ -18,9 +18,9 @@ nv() {
   nvim $1
 }
 alias nvrc='nv ~/my_configs/nvim/.config/nvim/'
-alias tmuxrc='nv ~/my_configs/tmux/'
+alias tmuxrc='nv ~/my_configs/tmux/.tmux.conf'
 alias nzshrc='nv ~/my_configs/zsh'
-alias spfrc='nv ~/my_configs/superfile/.config/superfile/'
+alias spfrc='nv ~/my_configs/superfile/.config/superfile/config.toml'
 
 # Updates
 alias update='_ apt update && _ apt list --upgradable'
