@@ -27,6 +27,9 @@ alias update='_ apt update && _ apt list --upgradable'
 alias upgrade='update && _ apt upgrade'
 alias autoremove='_ apt autoremove'
 
+# Lazygit
+alias lg='lazygit'
+
 # WSL
 alias wsl_stop='wsl.exe --shutdown'
 
