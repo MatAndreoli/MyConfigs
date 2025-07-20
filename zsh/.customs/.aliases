@@ -21,6 +21,7 @@ alias nvrc='nv ~/my_configs/nvim/.config/nvim/'
 alias tmuxrc='nv ~/my_configs/tmux/.tmux.conf'
 alias nzshrc='nv ~/my_configs/zsh'
 alias spfrc='nv ~/my_configs/superfile/.config/superfile/config.toml'
+alias lgrc='nv ~/my_configs/lazygit/.config/lazygit/config.yml'
 
 # Updates
 alias update='_ apt update && _ apt list --upgradable'

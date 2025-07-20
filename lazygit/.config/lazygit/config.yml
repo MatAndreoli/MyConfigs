@@ -27,4 +27,28 @@ gui:
       - '#f9e2af'
 os:
   editPreset: 'nvim'
-
+customCommands:
+  - key: '<c-p>'
+    context: 'files, commits'
+    description: 'push no verify'
+    command: 'git push --no-verify'
+    loadingText: 'Pushing changes'
+  - key: '<c-c>'
+    context: 'files'
+    description: 'commit no verify'
+    prompts:
+      - type: 'input'
+        title: 'Commit summary'
+        key: 'CommitMessage'
+        initialValue: ''
+    command: 'git commit -m "{{.Form.CommitMessage}}" --no-verify'
+    loadingText: 'Commiting'
+  - key: '<f5>'
+    context: 'global'
+    description: 'pull rebase'
+    command: 'git pull -r'
+    loadingText: 'Pulling...'
+keybinding:
+  universal:
+    quit-alt1: <disabled>
+    createPatchOptionsMenu: <disabled>
