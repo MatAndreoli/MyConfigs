@@ -5,6 +5,7 @@ theme = "catppuccin"
 # 
 # The editor files/directories will be opened with. (leave blank to use the EDITOR environment variable).
 editor = "nvim"
+dir_editor = "nvim"
 #
 # Auto check for update
 auto_check_update = true
@@ -14,6 +15,7 @@ cd_on_quit = false
 #
 # Whether to open file preview automatically every time superfile is opened.
 default_open_file_preview = true
+show_image_preview = true
 # 
 # The path of the first file panel when superfile is opened. (DON'T USE '~')
 default_directory = "."
@@ -63,3 +65,10 @@ metadata = false
 #
 # Enable MD5 checksum generation for files
 enable_md5_checksum = false
+
+show_panel_footer_info = true
+shell_close_on_success = false
+debug = false
+ignore_missing_fields = false
+code_previewer = "bat"
+zoxide_support = false

@@ -33,6 +33,7 @@ compress_file = ['ctrl+a', '']
 # editor
 open_file_with_editor = ['e', '']
 open_current_directory_with_editor = ['E', '']
+open_spf_prompt = ['>', '']
 # other
 pinned_directory = ['P', '']
 toggle_dot_file = ['.', '']

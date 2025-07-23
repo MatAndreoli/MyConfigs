@@ -25,6 +25,18 @@ gui:
       - '#cdd6f4'
     searchingActiveBorderColor:
       - '#f9e2af'
+  spinner:
+    frames:
+    - "▰▱▱▱▱▱▱▱"
+    - "▰▰▱▱▱▱▱▱"
+    - "▰▰▰▱▱▱▱▱"
+    - "▰▰▰▰▱▱▱▱"
+    - "▰▰▰▰▰▱▱▱"
+    - "▰▰▰▰▰▰▱▱"
+    - "▰▰▰▰▰▰▰▱"
+    - "▰▰▰▰▰▰▰▰"
+
+    rate: 90
 os:
   editPreset: 'nvim'
 customCommands:
@@ -32,7 +44,7 @@ customCommands:
     context: 'files, commits'
     description: 'push no verify'
     command: 'git push --no-verify'
-    loadingText: 'Pushing changes...'
+    loadingText: 'Pushing changes'
   - key: '<c-c>'
     context: 'files'
     description: 'commit no verify'
@@ -42,12 +54,12 @@ customCommands:
         key: 'CommitMessage'
         initialValue: ''
     command: 'git commit -m "{{.Form.CommitMessage}}" --no-verify'
-    loadingText: 'Committing...'
+    loadingText: 'Committing'
   - key: '<f5>'
     context: 'global'
     description: 'pull rebase'
     command: 'git pull -r'
-    loadingText: 'Pulling...'
+    loadingText: 'Pulling'
 keybinding:
   universal:
     quit-alt1: <disabled>
