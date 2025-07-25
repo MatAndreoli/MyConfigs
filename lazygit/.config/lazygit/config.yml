@@ -1,5 +1,5 @@
 gui:
-  nerdFontsVersion: '3'
+  nerdFontsVersion: "3"
   sidePanelWidth: 0.3333
   expandFocusedSidePanel: true
   commitAuthorShortLength: 10
@@ -7,59 +7,61 @@ gui:
   mainPanelSplitMode: horizontal
   theme:
     activeBorderColor:
-      - '#f38ba8'
+      - "#f38ba8"
       - bold
     inactiveBorderColor:
-      - '#a6adc8'
+      - "#a6adc8"
     optionsTextColor:
-      - '#89b4fa'
+      - "#89b4fa"
     selectedLineBgColor:
-      - '#313244'
+      - "#313244"
     cherryPickedCommitBgColor:
-      - '#45475a'
+      - "#45475a"
     cherryPickedCommitFgColor:
-      - '#f38ba8'
+      - "#f38ba8"
     unstagedChangesColor:
-      - '#f38ba8'
+      - "#f38ba8"
     defaultFgColor:
-      - '#cdd6f4'
+      - "#cdd6f4"
     searchingActiveBorderColor:
-      - '#f9e2af'
+      - "#f9e2af"
   spinner:
     frames:
-    - "▰▱▱▱▱▱▱▱"
-    - "▰▰▱▱▱▱▱▱"
-    - "▰▰▰▱▱▱▱▱"
-    - "▰▰▰▰▱▱▱▱"
-    - "▰▰▰▰▰▱▱▱"
-    - "▰▰▰▰▰▰▱▱"
-    - "▰▰▰▰▰▰▰▱"
-    - "▰▰▰▰▰▰▰▰"
-
+      - "▰▱▱▱▱▱▱▱"
+      - "▰▰▱▱▱▱▱▱"
+      - "▰▰▰▱▱▱▱▱"
+      - "▰▰▰▰▱▱▱▱"
+      - "▰▰▰▰▰▱▱▱"
+      - "▰▰▰▰▰▰▱▱"
+      - "▰▰▰▰▰▰▰▱"
+      - "▰▰▰▰▰▰▰▰"
     rate: 90
+git:
+  paging:
+    pager: delta --syntax-theme Dracula --paging=never
 os:
-  editPreset: 'nvim'
+  editPreset: "nvim"
 customCommands:
-  - key: '<c-p>'
-    context: 'files, commits'
-    description: 'push no verify'
-    command: 'git push --no-verify'
-    loadingText: 'Pushing changes'
-  - key: '<c-c>'
-    context: 'files'
-    description: 'commit no verify'
+  - key: "<c-p>"
+    context: "files, commits"
+    description: "push no verify"
+    command: "git push --no-verify"
+    loadingText: "Pushing changes"
+  - key: "<c-c>"
+    context: "files"
+    description: "commit no verify"
     prompts:
-      - type: 'input'
-        title: 'Commit summary'
-        key: 'CommitMessage'
-        initialValue: ''
+      - type: "input"
+        title: "Commit summary"
+        key: "CommitMessage"
+        initialValue: ""
     command: 'git commit -m "{{.Form.CommitMessage}}" --no-verify'
-    loadingText: 'Committing'
-  - key: '<f5>'
-    context: 'global'
-    description: 'pull rebase'
-    command: 'git pull -r'
-    loadingText: 'Pulling'
+    loadingText: "Committing"
+  - key: "<f5>"
+    context: "global"
+    description: "pull rebase"
+    command: "git pull -r"
+    loadingText: "Pulling"
 keybinding:
   universal:
     quit-alt1: <disabled>
