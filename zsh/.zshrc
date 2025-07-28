@@ -57,9 +57,6 @@ zinit cdreplay -q
 export EDITOR=$(which nvim)
 export ZVM_VI_SURROUND_BINDKEY=s-prefix
 
-# Keybindings
-bindkey -e
-
 # History
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
