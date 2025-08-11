@@ -92,3 +92,4 @@ alias c='clear'
 export PATH="${HOME}/.local/bin":${PATH}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(zoxide init zsh)"
