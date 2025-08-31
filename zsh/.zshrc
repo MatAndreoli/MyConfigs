@@ -93,3 +93,5 @@ export PATH="${HOME}/.local/bin":${PATH}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(zoxide init zsh)"
+
+[[ -s "/home/matandreoli/.gvm/scripts/gvm" ]] && source "/home/matandreoli/.gvm/scripts/gvm"
