@@ -1,7 +1,7 @@
 command = /bin/zsh
 
-theme = catppuccin-mocha
 background-opacity = 0.92
+theme = Catppuccin Mocha
 
 # font-family = "JetBrainsMono Nerd Font"
 font-size = 12

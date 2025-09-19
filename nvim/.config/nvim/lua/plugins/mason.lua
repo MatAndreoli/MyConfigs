@@ -1,6 +1,6 @@
 return {
   {
-    'williamboman/mason.nvim',
+    'mason-org/mason.nvim',
     event = 'VeryLazy',
     opts = {
       ui = {
@@ -14,7 +14,7 @@ return {
     },
   },
   {
-    'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason-lspconfig.nvim',
     event = 'VeryLazy',
     opts = {
       ensure_installed = {

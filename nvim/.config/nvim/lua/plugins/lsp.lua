@@ -18,8 +18,8 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
+      'mason-org/mason.nvim',
+      'mason-org/mason-lspconfig.nvim',
       'ray-x/lsp_signature.nvim',
       'j-hui/fidget.nvim',
     },
@@ -50,9 +50,9 @@ return {
         },
       },
       setup = {
-        clangd = function(_, opts)
-          opts.capabilities.offsetEncoding = { 'utf-16' }
-        end,
+        -- clangd = function(_, opts)
+        --   opts.capabilities.offsetEncoding = { 'utf-16' }
+        -- end,
       },
     },
   },

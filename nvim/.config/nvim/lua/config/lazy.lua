@@ -24,9 +24,9 @@ require('lazy').setup({
     { 'folke/trouble.nvim', enabled = false },
     { 'nvim-neo-tree/neo-tree.nvim', enabled = false },
     { 'nvim-treesitter/nvim-treesitter-textobjects', enabled = false },
-    { 'echasnovski/mini.pairs', enabled = false },
-    { 'echasnovski/mini.ai', enabled = false },
-    { 'echasnovski/mini.icons', enabled = false },
+    { 'nvim-mini/mini.pairs', enabled = false },
+    { 'nvim-mini/mini.ai', enabled = false },
+    { 'nvim-mini/mini.icons', enabled = false },
     { 'folke/ts-comments.nvim', enabled = false },
 
     -- Adding extras
