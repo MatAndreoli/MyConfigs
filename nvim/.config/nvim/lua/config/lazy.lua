@@ -22,26 +22,27 @@ require('lazy').setup({
     -- Disabling plugins
     { 'catppuccin', enabled = false },
     { 'folke/trouble.nvim', enabled = false },
-    { 'nvim-neo-tree/neo-tree.nvim', enabled = false },
-    { 'nvim-treesitter/nvim-treesitter-textobjects', enabled = false },
-    { 'nvim-mini/mini.pairs', enabled = false },
+    { 'folke/ts-comments.nvim', enabled = false },
     { 'nvim-mini/mini.ai', enabled = false },
     { 'nvim-mini/mini.icons', enabled = false },
-    { 'folke/ts-comments.nvim', enabled = false },
+    { 'nvim-mini/mini.pairs', enabled = false },
+    { 'nvim-neo-tree/neo-tree.nvim', enabled = false },
+    { 'nvim-treesitter/nvim-treesitter-textobjects', enabled = false },
 
     -- Adding extras
     { import = 'lazyvim.plugins.extras.linting.eslint' },
 
     { import = 'lazyvim.plugins.extras.formatting.prettier' },
 
-    { import = 'lazyvim.plugins.extras.editor.refactoring' },
     { import = 'lazyvim.plugins.extras.editor.fzf' },
     { import = 'lazyvim.plugins.extras.editor.harpoon2' },
+    { import = 'lazyvim.plugins.extras.editor.refactoring' },
 
-    { import = 'lazyvim.plugins.extras.lang.java' },
-    { import = 'lazyvim.plugins.extras.lang.python' },
-    { import = 'lazyvim.plugins.extras.lang.markdown' },
     { import = 'lazyvim.plugins.extras.lang.go' },
+    { import = 'lazyvim.plugins.extras.lang.java' },
+    { import = 'lazyvim.plugins.extras.lang.markdown' },
+    { import = 'lazyvim.plugins.extras.lang.python' },
+    { import = 'lazyvim.plugins.extras.lang.vue' },
 
     { import = 'lazyvim.plugins.extras.ui.smear-cursor' },
 
