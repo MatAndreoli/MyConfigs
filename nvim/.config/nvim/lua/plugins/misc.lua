@@ -1,8 +1,8 @@
 return {
-  {
-    'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-    event = 'BufReadPre',
-  },
+  -- {
+  --   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  --   event = 'BufReadPre',
+  -- },
   {
     'NvChad/nvim-colorizer.lua',
     event = 'BufReadPre',

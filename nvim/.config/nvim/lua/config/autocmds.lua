@@ -22,6 +22,15 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+vim.api.nvim_create_augroup('JavaLogMacro', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+  group = 'JavaLogMacro',
+  pattern = { 'java' },
+  callback = function()
+    vim.fn.setreg('l', 'yoSystem.out.println("' .. esc .. 'pa: ' .. esc .. 'la + ' .. esc .. 'pla;' .. esc)
+  end,
+})
+
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
@@ -103,6 +112,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
       map('<leader>th', function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
       end, '[T]oggle Inlay [H]ints')
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local buf_ft = vim.bo[args.buf].filetype
+    if buf_ft == 'java' then
+      local o = vim.opt_local
+      o.expandtab = true
+      o.shiftwidth = 4
+      o.tabstop = 4
+      o.softtabstop = 4
+      o.autoindent = true
+      o.smartindent = true
     end
   end,
 })

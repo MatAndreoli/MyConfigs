@@ -44,6 +44,9 @@ require('lazy').setup({
     { import = 'lazyvim.plugins.extras.lang.python' },
     { import = 'lazyvim.plugins.extras.lang.vue' },
 
+    -- { import = 'lazyvim.plugins.extras.dap.core' },
+    -- { import = 'lazyvim.plugins.extras.test.core' },
+
     { import = 'lazyvim.plugins.extras.ui.smear-cursor' },
 
     { import = 'lazyvim.plugins.extras.util.rest' },
@@ -61,6 +64,9 @@ require('lazy').setup({
     enabled = true,
   },
   performance = {
+    cache = {
+      enabled = true,
+    },
     rtp = {
       -- disable some rtp plugins
       disabled_plugins = {
