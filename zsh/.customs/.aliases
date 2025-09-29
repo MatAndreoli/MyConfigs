@@ -109,17 +109,17 @@ alias ngrok="dcr -it --rm --name=ngrok -e NGROK_AUTHTOKEN=$NGROK_TOKEN --net=hos
 alias jkstart="dcr -d --name=alpineSocat --restart=always -p 127.0.0.1:2376:2375 --network jenkins -v /var/run/docker.sock:/var/run/docker.sock alpine/socat tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock && jenkins"
 
 # SDKMAN configuration
-alias java_mode="export SDKMAN_DIR="$HOME/.sdkman" && [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh""
+# alias java_mode="export SDKMAN_DIR="$HOME/.sdkman" && [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh""
 
 # NVM configuration
-nvm_mode() {
-  export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-}
+# nvm_mode() {
+#   export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+#   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# }
 
 # Pyenv configuration
-pyenv_mode() {
-  export PYENV_ROOT="$HOME/.pyenv"
-  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
-}
+# pyenv_mode() {
+#   export PYENV_ROOT="$HOME/.pyenv"
+#   command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+#   eval "$(pyenv init -)"
+# }
