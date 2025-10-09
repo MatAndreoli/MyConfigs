@@ -16,15 +16,28 @@ return {
   --     'nvim-lua/plenary.nvim',
   --     'antoinemadec/FixCursorHold.nvim',
   --     'nvim-treesitter/nvim-treesitter',
+  --     {
+  --       'fredrikaverpil/neotest-golang',
+  --       dependencies = {
+  --         'leoluz/nvim-dap-go',
+  --       },
+  --       branch = 'main',
+  --     },
   --   },
   --   config = function()
+  --     -- set up Neotest
   --     require('neotest').setup {
   --       adapters = {
-  --         require 'neotest-java' {
-  --           -- config here
-  --         },
+  --         require 'neotest-golang',
   --       },
   --     }
+  --
+  --     -- set up logging
+  --     local log_level = vim.log.levels.DEBUG
+  --     require('neotest.logging'):set_level(log_level)
+  --     vim.notify('Logging for Neotest enabled', vim.log.levels.WARN)
+  --     local filepath = require('neotest.logging'):get_filename()
+  --     vim.notify('Neotest log file: ' .. filepath, vim.log.levels.INFO)
   --   end,
   -- },
 }

@@ -62,6 +62,11 @@ customCommands:
     description: "pull rebase"
     command: "git pull -r"
     loadingText: "Pulling"
+  - key: "<c-e>"
+    context: "global"
+    description: "empty commit"
+    command: "git commit -m 'Trigger Pipe' --allow-empty --no-verify && git push --no-verify"
+    loadingText: "Committing"
 keybinding:
   universal:
     quit-alt1: <disabled>
