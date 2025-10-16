@@ -23,7 +23,7 @@ cleanAllNodeModules() {
 putCertificates() {
   env="$1"
   config_path=/var/run/secrets/kubernetes.io/serviceaccount
-  files_path=~/Documents/cluster
+  files_path=~/Documentos/cluster
   if [ ! -d /var/run/secrets ]; then
     printf "Dir secrets doesn't exist, creating dir tree\n"
     sudo mkdir -p "$config_path"
