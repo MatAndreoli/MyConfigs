@@ -6,6 +6,7 @@ vim.keymap.set('n', '<C-S-s>', ':wa<CR>', { desc = '[S]ave all buffers', silent 
 vim.keymap.set('n', '<leader><leader>x', ':so %<CR>', { desc = 'Source current buffer', silent = true })
 vim.keymap.set('n', '<M-x>', ':.lua<CR>', { desc = 'Source current buffer', silent = true })
 vim.keymap.set('v', '<M-x>', ':lua<CR>', { desc = 'Source current buffer', silent = true })
+vim.keymap.set('n', '<C-c><C-o>', ':!code .<CR>', { desc = 'Open project in VSCode', silent = true })
 
 -- Editor
 vim.keymap.set('i', 'jk', '<Esc>')

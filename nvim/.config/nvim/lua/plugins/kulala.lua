@@ -8,7 +8,8 @@ return {
   ft = { 'http', 'rest' },
   opts = {
     ui = {
-      show_variable_info_text = 'float',
+      -- show_variable_info_text = 'float',
+      show_icons = 'signcolumn',
     },
     global_keymaps = {},
     global_keymaps_prefix = '<leader>R',
