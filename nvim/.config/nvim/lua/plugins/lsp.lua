@@ -34,10 +34,8 @@ return {
         html = {},
         jsonls = {},
         nginx_language_server = {},
-        pylsp = {},
         ts_ls = {},
         yamlls = {},
-        pyright = {},
         lua_ls = {
           settings = {
             Lua = {

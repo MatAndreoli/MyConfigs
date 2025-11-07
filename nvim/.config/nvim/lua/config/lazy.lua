@@ -21,7 +21,6 @@ require('lazy').setup({
 
     -- Disabling plugins
     { 'catppuccin', enabled = false },
-    { 'folke/trouble.nvim', enabled = false },
     { 'folke/ts-comments.nvim', enabled = false },
     { 'nvim-mini/mini.ai', enabled = false },
     { 'nvim-mini/mini.icons', enabled = false },

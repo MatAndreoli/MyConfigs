@@ -18,7 +18,6 @@ return {
     event = 'VeryLazy',
     opts = {
       ensure_installed = {
-        'basedpyright',
         'clangd',
         'cssls',
         'docker_compose_language_service',
@@ -30,7 +29,6 @@ return {
         'lua_ls',
         'marksman',
         'nginx_language_server',
-        'pylsp',
         'pyright',
         'ruff',
         'ts_ls',
