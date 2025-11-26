@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export EDITOR=nvim
+export MY_CONFIGS_DIR=
 export VIVO_REPOS=
 export VIVO_USR=
 export VIVO_PSW=

@@ -17,11 +17,12 @@ nv() {
   fi
   nvim $1
 }
-alias nvrc='nv ~/MyConfigs/nvim/.config/nvim/'
-alias tmuxrc='nv ~/MyConfigs/tmux/.tmux.conf'
-alias nzshrc='nv ~/MyConfigs/zsh'
-alias spfrc='nv ~/MyConfigs/superfile/.config/superfile/config.toml'
-alias lgrc='nv ~/MyConfigs/lazygit/.config/lazygit/config.yml'
+alias nvrc='nv ${MY_CONFIGS_DIR}/nvim/.config/nvim/'
+alias tmuxrc='nv ${MY_CONFIGS_DIR}/tmux/.tmux.conf'
+alias nzshrc='nv ${MY_CONFIGS_DIR}/zsh'
+alias spfrc='nv ${MY_CONFIGS_DIR}/superfile/.config/superfile/config.toml'
+alias lgrc='nv ${MY_CONFIGS_DIR}/lazygit/.config/lazygit/config.yml'
+alias rest='nv ~/Vivo/B2B/rest'
 
 # Updates
 alias update='_ apt update && _ apt list --upgradable'
@@ -86,7 +87,7 @@ pvef() {
 }
 
 #Minikube
-alias minikube="~/.MyConfigs/minikube"
+alias minikube='${MY_CONFIGS_DIR}/minikube'
 alias mkstart="minikube start"
 alias mkstop="minikube stop"
 alias mkstatus="minikube status"
