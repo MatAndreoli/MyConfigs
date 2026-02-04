@@ -110,4 +110,10 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+vim.opt.ttyfast = true
+vim.opt.synmaxcol = 200
+
+vim.g.matchparen_timeout = 20
+vim.g.matchparen_insert_timeout = 20
+
 vim.lsp.inlay_hint.enable(true)

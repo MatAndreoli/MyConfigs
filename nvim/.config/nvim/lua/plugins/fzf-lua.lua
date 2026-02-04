@@ -2,6 +2,9 @@ return {
   'ibhagwan/fzf-lua',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   opts = {
+    file_ignore_patterns = {
+      'reports/mutation',
+    },
     git = {
       icons = {
         ['M'] = { icon = '', color = 'yellow' },
