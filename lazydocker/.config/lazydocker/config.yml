@@ -1,0 +1,37 @@
+stats:
+  maxDuration: "5m"
+  graphs:
+    - caption: CPU (%)
+      statPath: DerivedStats.CPUPercentage
+      color: blue
+      min: 0
+      max: 100
+      minType: "static"
+      maxType: "static"
+    - caption: Memory (%)
+      statPath: DerivedStats.MemoryPercentage
+      color: green
+      min: 0
+      max: 100
+      minType: "static"
+      maxType: "static"
+customCommands:
+  containers:
+    - name: remove all containers
+      attach: true
+      command: bash -c "docker rm $(docker ps -aq) -f"
+    - name: prune
+      attach: true
+      command: "docker container prune -f"
+  images:
+    - name: prune
+      attach: true
+      command: "docker image prune -f"
+  volumes:
+    - name: prune
+      attach: true
+      command: "docker volume prune -f"
+  networks:
+    - name: prune
+      attach: true
+      command: "docker network prune -f"
