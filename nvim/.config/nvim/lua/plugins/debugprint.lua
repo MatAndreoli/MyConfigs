@@ -1,6 +1,32 @@
 return {
   'andrewferrier/debugprint.nvim',
   opts = {
+    filetypes = {
+      ['javascript'] = {
+        left = 'console.log("',
+        right = '")',
+        mid_var = '", ',
+        right_var = ')',
+      },
+      ['javascriptreact'] = {
+        left = 'console.log("',
+        right = '")',
+        mid_var = '", ',
+        right_var = ')',
+      },
+      ['typescript'] = {
+        left = 'console.log("',
+        right = '")',
+        mid_var = '", ',
+        right_var = ')',
+      },
+      ['typescriptreact'] = {
+        left = 'console.log("',
+        right = '")',
+        mid_var = '", ',
+        right_var = ')',
+      },
+    },
     keymaps = {
       normal = {
         plain_below = 'g?p',
