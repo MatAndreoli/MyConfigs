@@ -1,0 +1,133 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "shift shift": "file_finder::Toggle",
+      // Save
+      "ctrl-s": "workspace::Save",
+      "ctrl-shift-s": "workspace::SaveAll",
+      // Quit
+      "ctrl-x ctrl-x": "workspace::CloseWindow",
+      // Splits
+      "space w v": "pane::SplitRight",
+      "space w h": "pane::SplitDown",
+
+      // Terminal
+      "space t t": "workspace::NewTerminal",
+      // Diagnostics panel
+      "space q": "diagnostics::Deploy",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      // LSP
+      "space c h": "editor::Hover",
+      "space c a": "editor::ToggleCodeActions",
+      "space c r": "editor::Rename",
+      "alt-f": [
+        "editor::GoToDiagnostic",
+        { "severity": { "min": "hint", "max": "error" } },
+      ],
+      "alt-d": [
+        "editor::GoToPreviousDiagnostic",
+        { "severity": { "min": "hint", "max": "error" } },
+      ],
+
+      // Go to
+      "g d": "editor::GoToDefinition",
+      "g r": "editor::FindAllReferences",
+      "g i": "editor::GoToImplementation",
+      "g b": "pane::GoBack",
+
+      // Search / find
+      "space s f": "file_finder::Toggle",
+      "space s g": "pane::DeploySearch",
+      "space /": "buffer_search::Deploy",
+
+      // Close buffer/split
+      "space x s": ["pane::CloseActiveItem", { "close_pinned": false }],
+      "space x": ["pane::CloseActiveItem", { "close_pinned": false }],
+      "space w o": ["pane::CloseOtherItems", { "close_pinned": false }],
+
+      // Duplicate line
+      "space m": "editor::DuplicateLineDown",
+
+      // Select all matches of word under cursor
+      "space i": "editor::SelectAllMatches",
+
+      // Harpoon-style: slots 1-4
+      "space h 1": ["pane::ActivateItem", 0],
+      "space h 2": ["pane::ActivateItem", 1],
+      "space h 3": ["pane::ActivateItem", 2],
+      "space h 4": ["pane::ActivateItem", 3],
+
+      // Harpoon-style: prev/next
+      "space p": "pane::ActivatePreviousItem",
+      "space P": "pane::ActivateNextItem",
+
+      // Harpoon quick menu -> tab switcher
+      "ctrl-e": "tab_switcher::Toggle",
+
+      // File explorer (Oil replacement)
+      "-": "project_panel::ToggleFocus",
+      "_": "project_panel::ToggleFocus",
+
+      // Move lines
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp",
+
+      // Git
+      "space g r": "git::Restore",
+      "space g R": "git::RestoreFile",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j k": "vim::NormalBefore",
+      "ctrl-s": "workspace::Save",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      // Keep selection after indent
+      ">": "editor::Indent",
+      "<": "editor::Outdent",
+
+      // Move selection
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp",
+    },
+  },
+  {
+    "bindings": {
+      // Pane focus (mirrors C-h/j/k/l) — no context = always active
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+    },
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-tab": "pane::ActivateNextItem",
+      "ctrl-shift-tab": "pane::ActivatePreviousItem",
+    },
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-t": ["pane::CloseActiveItem", { "close_pinned": false }],
+    },
+  },
+]
