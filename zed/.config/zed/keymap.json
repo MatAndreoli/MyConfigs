@@ -53,7 +53,6 @@
       "space /": "buffer_search::Deploy",
 
       // Close buffer/split
-      "space x s": ["pane::CloseActiveItem", { "close_pinned": false }],
       "space x": ["pane::CloseActiveItem", { "close_pinned": false }],
       "space w o": ["pane::CloseOtherItems", { "close_pinned": false }],
 
@@ -62,16 +61,6 @@
 
       // Select all matches of word under cursor
       "space i": "editor::SelectAllMatches",
-
-      // Harpoon-style: slots 1-4
-      "space h 1": ["pane::ActivateItem", 0],
-      "space h 2": ["pane::ActivateItem", 1],
-      "space h 3": ["pane::ActivateItem", 2],
-      "space h 4": ["pane::ActivateItem", 3],
-
-      // Harpoon-style: prev/next
-      "space p": "pane::ActivatePreviousItem",
-      "space P": "pane::ActivateNextItem",
 
       // Harpoon quick menu -> tab switcher
       "ctrl-e": "tab_switcher::Toggle",
@@ -115,6 +104,8 @@
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown",
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
     },
   },
   {
