@@ -57,7 +57,7 @@
   "vim_mode": true,
   "relative_line_numbers": "enabled",
   "vertical_scroll_margin": 10,
-  "show_whitespaces": "all",
+  "show_whitespaces": "none",
   "inlay_hints": { "enabled": true },
   "soft_wrap": "none",
   "format_on_save": "on",

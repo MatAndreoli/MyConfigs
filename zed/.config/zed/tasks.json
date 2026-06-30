@@ -1,0 +1,18 @@
+[
+  {
+    "label": "python: test",
+    "command": "rm -rf .coverage htmlcov/* && pytest --cov=. --cov-branch --cov-report=html --cov-report=xml --cov-report=term -v",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+    "hide": "never",
+    "save": "none",
+  },
+  {
+    "label": "lazygit",
+    "command": "lazygit",
+    "args": ["-p", "$ZED_WORKTREE_ROOT"],
+    "reveal_target": "center",
+    "use_new_terminal": true,
+    "reveal": "always",
+  },
+]

@@ -13,6 +13,9 @@
       // Save
       "ctrl-s": "workspace::Save",
       "ctrl-shift-s": "workspace::SaveAll",
+      "space u f": "workspace::SaveWithoutFormat",
+      // Reload workspace
+      "space r w": "workspace::Reload",
       // Quit
       "ctrl-x ctrl-x": "workspace::CloseWindow",
       // Splits
@@ -21,6 +24,7 @@
 
       // Terminal
       "space t t": "workspace::NewTerminal",
+      "space t b": "workspace::ToggleBottomDock",
       // Diagnostics panel
       "space q": "diagnostics::Deploy",
     },
@@ -52,6 +56,10 @@
       "space s g": "pane::DeploySearch",
       "space /": "buffer_search::Deploy",
 
+      // Navigate project search results
+      "g n": "search::SelectNextMatch",
+      "g p": "search::SelectPreviousMatch",
+
       // Close buffer/split
       "space x": ["pane::CloseActiveItem", { "close_pinned": false }],
       "space w o": ["pane::CloseOtherItems", { "close_pinned": false }],
@@ -74,6 +82,7 @@
       "alt-k": "editor::MoveLineUp",
 
       // Git
+      "space g g": ["task::Spawn", { "task_name": "lazygit" }],
       "space g r": "git::Restore",
       "space g R": "git::RestoreFile",
     },
@@ -95,6 +104,9 @@
       // Move selection
       "alt-j": "editor::MoveLineDown",
       "alt-k": "editor::MoveLineUp",
+
+      // Search selection in project
+      "space s g": "project_search::SearchInNew",
     },
   },
   {
