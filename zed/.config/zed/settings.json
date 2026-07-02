@@ -91,9 +91,20 @@
     "**/node_modules",
     "**/reports/mutation",
   ],
+  "preview_tabs": {
+    "enabled": true,
+    "enable_preview_from_project_panel": true,
+    "enable_preview_from_file_finder": true,
+    "enable_preview_from_multibuffer": true,
+    "enable_preview_multibuffer_from_code_navigation": true,
+    "enable_preview_file_from_code_navigation": true,
+    "enable_keep_preview_on_code_navigation": true,
+  },
 
   // ── Panels & Docks ────────────────────────────────────────────────────────
   "tab_bar": {
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": false,
     "show_pinned_tabs_in_separate_row": false,
   },
   "toolbar": {

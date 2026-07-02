@@ -9,7 +9,6 @@
   {
     "context": "Workspace",
     "bindings": {
-      "shift shift": "file_finder::Toggle",
       // Save
       "ctrl-s": "workspace::Save",
       "ctrl-shift-s": "workspace::SaveAll",
@@ -52,10 +51,9 @@
       "g b": "pane::GoBack",
 
       // Search / find
-      "space s f": "file_finder::Toggle",
+      "space f f": "file_finder::Toggle",
       "space s k": "zed::OpenKeymap",
       "space s g": "pane::DeploySearch",
-      "space /": "buffer_search::Deploy",
 
       // Navigate project search results
       "g n": "search::SelectNextMatch",
@@ -83,7 +81,10 @@
       "alt-k": "editor::MoveLineUp",
 
       // Git
-      "space g g": ["task::Spawn", { "task_name": "lazygit", "reveal_target": "center" }],
+      "space g g": [
+        "task::Spawn",
+        { "task_name": "lazygit", "reveal_target": "center" },
+      ],
       "space g r": "git::Restore",
       "space g R": "git::RestoreFile",
     },
