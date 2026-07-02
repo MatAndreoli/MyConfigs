@@ -53,6 +53,7 @@
 
       // Search / find
       "space s f": "file_finder::Toggle",
+      "space s k": "zed::OpenKeymap",
       "space s g": "pane::DeploySearch",
       "space /": "buffer_search::Deploy",
 
@@ -82,7 +83,7 @@
       "alt-k": "editor::MoveLineUp",
 
       // Git
-      "space g g": ["task::Spawn", { "task_name": "lazygit" }],
+      "space g g": ["task::Spawn", { "task_name": "lazygit", "reveal_target": "center" }],
       "space g r": "git::Restore",
       "space g R": "git::RestoreFile",
     },
@@ -106,7 +107,7 @@
       "alt-k": "editor::MoveLineUp",
 
       // Search selection in project
-      "space s g": "project_search::SearchInNew",
+      "space s g": "pane::DeploySearch",
     },
   },
   {

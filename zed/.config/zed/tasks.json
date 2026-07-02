@@ -11,7 +11,6 @@
     "label": "lazygit",
     "command": "lazygit",
     "args": ["-p", "$ZED_WORKTREE_ROOT"],
-    "reveal_target": "center",
     "use_new_terminal": true,
     "reveal": "always",
   },
