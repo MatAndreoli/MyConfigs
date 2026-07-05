@@ -32,7 +32,8 @@
     "context": "Editor && vim_mode == normal",
     "bindings": {
       // LSP
-      "space c h": "editor::Hover",
+      "space h": "editor::Hover",
+      "space c h": "editor::ShowSignatureHelp",
       "space c a": "editor::ToggleCodeActions",
       "space c r": "editor::Rename",
       "alt-f": [
@@ -70,11 +71,7 @@
       "space i": "editor::SelectAllMatches",
 
       // Harpoon quick menu -> tab switcher
-      "ctrl-e": "tab_switcher::Toggle",
-
-      // File explorer (Oil replacement)
-      "-": "project_panel::ToggleFocus",
-      "_": "project_panel::ToggleFocus",
+      "space e": "tab_switcher::Toggle",
 
       // Move lines
       "alt-j": "editor::MoveLineDown",
@@ -114,6 +111,7 @@
   {
     "bindings": {
       // Pane focus (mirrors C-h/j/k/l) — no context = always active
+      "ctrl-b": "workspace::ToggleLeftDock",
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",

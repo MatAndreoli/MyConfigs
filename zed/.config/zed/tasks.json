@@ -1,5 +1,37 @@
 [
   {
+    "label": "java: test all",
+    "command": "./mvnw test",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+    "hide": "never",
+    "tags": ["java"],
+  },
+  {
+    "label": "java: test class",
+    "command": "./mvnw test -Dtest=$ZED_STEM",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+    "hide": "never",
+    "tags": ["java"],
+  },
+  {
+    "label": "java: test method",
+    "command": "./mvnw test -Dtest=$ZED_STEM#$ZED_SYMBOL",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+    "hide": "never",
+    "tags": ["java"],
+  },
+  {
+    "label": "java: clean test",
+    "command": "./mvnw clean test",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "reveal": "always",
+    "hide": "never",
+    "tags": ["java"],
+  },
+  {
     "label": "python: test",
     "command": "rm -rf .coverage htmlcov/* && pytest --cov=. --cov-branch --cov-report=html --cov-report=xml --cov-report=term -v",
     "cwd": "$ZED_WORKTREE_ROOT",

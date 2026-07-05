@@ -11,13 +11,26 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "One Dark",
+    "dark": "One Dark Pro Vivid",
   },
   "theme_overrides": {
     "One Dark": {
       "border.variant": "#262b32ff",
       "border": "#2f323bff",
       "title_bar.background": "#202329ff",
+      "syntax": {
+        "comment": {
+          "font_style": "italic",
+        },
+        "comment.doc": {
+          "font_style": "italic",
+        },
+      },
+    },
+    "One Dark Pro Vivid": {
+      "border.variant": "#23272eff",
+      "border": "#202329ff",
+      "title_bar.background": "#1e2227ff",
       "syntax": {
         "comment": {
           "font_style": "italic",
@@ -38,7 +51,7 @@
   "buffer_font_size": 15,
   "cursor_blink": false,
   "active_pane_modifiers": {
-    "inactive_opacity": 0.6,
+    "inactive_opacity": 0.75,
   },
   "title_bar": {
     "show_onboarding_banner": false,
@@ -53,14 +66,15 @@
   // ── Editor ────────────────────────────────────────────────────────────────
   "vim_mode": true,
   "relative_line_numbers": "enabled",
-  "vertical_scroll_margin": 10,
+  "vertical_scroll_margin": 5,
   "soft_wrap": "none",
   "preferred_line_length": 80,
   "wrap_guides": [120],
   "show_whitespaces": "selection",
   "inlay_hints": { "enabled": true },
   "lsp_document_colors": "inlay",
-  "auto_signature_help": true,
+  "auto_signature_help": false,
+  "show_signature_help_after_edits": true,
   "inline_code_actions": false,
   "extend_comment_on_newline": false,
   "seed_search_query_from_cursor": "selection",
@@ -70,7 +84,7 @@
   "gutter": {
     "min_line_number_digits": 0,
     "folds": false,
-    "runnables": false,
+    "runnables": true,
   },
 
   // ── Formatting ────────────────────────────────────────────────────────────
@@ -159,6 +173,93 @@
   // ── Git ───────────────────────────────────────────────────────────────────
   "git": {
     "inline_blame": { "enabled": true, "show_commit_summary": true },
+  },
+
+  // ── Language overrides ────────────────────────────────────────────────────
+  "languages": {
+    "Java": {
+      "formatter": "language_server",
+      "wrap_guides": [120],
+    },
+    "Python": {
+      "wrap_guides": [88],
+    },
+  },
+
+  // ── Java ──────────────────────────────────────────────────────────────────
+  "lsp": {
+    "jdtls": {
+      "settings": {
+        "java_home": "~/.sdkman/candidates/java/21.0.8-oracle",
+        "lombok_support": true,
+        "check_updates": "never",
+      },
+      "initialization_options": {
+        "settings": {
+          "java": {
+            "configuration": {
+              "updateBuildConfiguration": "automatic",
+              "runtimes": [
+                {
+                  "name": "JavaSE-17",
+                  "path": "~/.sdkman/candidates/java/17.0.12-oracle",
+                },
+                {
+                  "name": "JavaSE-21",
+                  "path": "~/.sdkman/candidates/java/21.0.8-oracle",
+                  "default": true,
+                },
+              ],
+              "maven": {
+                "userSettings": "~/.m2/settings.xml",
+              },
+            },
+            "saveActions": {
+              "organizeImports": true,
+            },
+            "eclipse": { "downloadSources": true },
+            "maven": { "downloadSources": true },
+            "autobuild": { "enabled": true },
+            "import": {
+              "maven": {
+                "enabled": true,
+                "home": "~/.sdkman/candidates/maven/3.8.6",
+              },
+            },
+            "inlayHints": {
+              "parameterNames": { "enabled": "all" },
+            },
+            "signatureHelp": {
+              "enabled": true,
+              "description": { "enabled": true },
+            },
+            "format": {
+              "enabled": true,
+              "settings": {
+                "url": "~/.config/zed/intellij-style.xml",
+              },
+              "onType": { "enabled": false },
+            },
+            "completion": {
+              "enabled": true,
+              "favoriteStaticMembers": [
+                "org.junit.jupiter.api.Assertions.*",
+                "org.junit.jupiter.api.Assumptions.*",
+                "org.mockito.Mockito.*",
+                "org.mockito.ArgumentMatchers.*",
+              ],
+              "importOrder": ["java", "javax", "com", "org"],
+              "postfix": { "enabled": true },
+              "guessMethodArguments": "insertParameterNames",
+            },
+            "references": {
+              "includeDecompiledSources": true,
+            },
+            "referencesCodeLens": { "enabled": true },
+          },
+        },
+      },
+    },
   },
 
   // ── Session & Privacy ─────────────────────────────────────────────────────
