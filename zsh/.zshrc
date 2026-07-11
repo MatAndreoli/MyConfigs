@@ -114,3 +114,6 @@ eval "$(zoxide init zsh)"
 [[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 alias lzd='lazydocker'
+
+# opencode
+export PATH=/home/matandreoli/.opencode/bin:$PATH
