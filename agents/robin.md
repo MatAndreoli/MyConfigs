@@ -1,7 +1,7 @@
 ---
 description: Especialista em Node.js e NestJS. Use para escrever, refatorar ou depurar APIs, módulos, providers, microsserviços em Node/NestJS.
 mode: subagent
-model: myprovider/anthropic.claude-5-sonnet
+model: opencode-go/deepseek-v4-flash
 temperature: 0
 color: "#C1272D"
 permission:

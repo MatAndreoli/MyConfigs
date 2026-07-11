@@ -1,7 +1,7 @@
 ---
 description: Especialista em React. Use para escrever, refatorar ou depurar componentes, hooks, gerenciamento de estado e performance de UI em React.
 mode: subagent
-model: myprovider/anthropic.claude-5-sonnet
+model: opencode-go/qwen3.7-plus
 temperature: 0
 color: "#61DBFB"
 permission:

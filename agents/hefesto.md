@@ -1,7 +1,7 @@
 ---
 description: Agent principal de codificação genérica — usado quando a tarefa não é específica de uma stack (Java/Python/React/Node) ou cruza múltiplas. Delega para especialistas quando fizer sentido.
-mode: primary
-model: myprovider/anthropic.claude-5-sonnet
+mode: all
+model: opencode-go/minimax-m3
 temperature: 0
 color: warning
 ---

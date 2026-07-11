@@ -1,7 +1,7 @@
 ---
 description: Escreve e mantém documentação técnica — READMEs, docs de API, comentários de arquitetura, guias de setup. Use após implementar ou alterar funcionalidades relevantes.
 mode: subagent
-model: myprovider/deepseek-v4-pro
+model: opencode-go/qwen3.6-plus
 temperature: 0.3
 color: success
 permission:

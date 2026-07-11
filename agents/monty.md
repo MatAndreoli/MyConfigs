@@ -1,7 +1,7 @@
 ---
 description: Especialista em Python. Use para escrever, refatorar ou depurar código Python — scripts, APIs, automações, data pipelines.
 mode: subagent
-model: myprovider/anthropic.claude-5-sonnet
+model: opencode-go/minimax-m3
 temperature: 0
 color: "#2E8B57"
 permission:

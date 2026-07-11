@@ -1,7 +1,7 @@
 ---
 description: Explora e mapeia a codebase, responde perguntas sobre arquitetura, encontra onde algo está implementado. Use quando precisar entender um repositório desconhecido ou localizar código antes de planejar/codificar.
 mode: subagent
-model: myprovider/anthropic.claude-5-sonnet
+model: opencode-go/minimax-m3
 temperature: 0
 color: info
 permission:

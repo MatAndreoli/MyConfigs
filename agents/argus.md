@@ -1,7 +1,7 @@
 ---
 description: Revisa código para segurança, performance, manutenibilidade e cobertura de testes. Use antes de mergear qualquer mudança relevante.
 mode: subagent
-model: myprovider/gpt-5.5
+model: opencode-go/glm-5.2
 temperature: 0
 color: error
 permission:
@@ -12,8 +12,51 @@ permission:
   todowrite: deny
   bash:
     "*": ask
+    # VCS
     "git *": allow
     "* git *": allow
+    # Navegação e listagem
+    "ls *": allow
+    "tree *": allow
+    "pwd": allow
+    # Leitura de arquivos
+    "cat *": allow
+    "head *": allow
+    "tail *": allow
+    "wc *": allow
+    "file *": allow
+    "stat *": allow
+    "readlink *": allow
+    "realpath *": allow
+    "basename *": allow
+    "dirname *": allow
+    # Busca e processamento de texto
+    "find *": allow
+    "grep *": allow
+    "rg *": allow
+    "diff *": allow
+    "sort *": allow
+    "uniq *": allow
+    "cut *": allow
+    "tr *": allow
+    "xxd *": allow
+    "od *": allow
+    "md5sum *": allow
+    "sha1sum *": allow
+    "sha256sum *": allow
+    # Informações do sistema
+    "uname *": allow
+    "whoami": allow
+    "id *": allow
+    "id": allow
+    "date *": allow
+    "date": allow
+    "env": allow
+    "which *": allow
+    "whereis *": allow
+    "type *": allow
+    "du *": allow
+    "df *": allow
   edit: deny
   task: deny
   external_directory:

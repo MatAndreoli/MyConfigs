@@ -1,7 +1,7 @@
 ---
 description: Especialista em Java e Quarkus. Use para escrever, refatorar ou depurar código Java, especialmente em serviços Quarkus (REST, CDI, Panache, GraalVM native image).
 mode: subagent
-model: myprovider/anthropic.claude-5-sonnet
+model: opencode-go/deepseek-v4-pro
 temperature: 0
 color: "#8B5E3C"
 permission:
