@@ -24,6 +24,9 @@ alias spfrc='nv ${MY_CONFIGS_DIR}/superfile/.config/superfile/config.toml'
 alias lgrc='nv ${MY_CONFIGS_DIR}/lazygit/.config/lazygit/config.yml'
 alias rest='nv ~/Vivo/B2B/rest'
 
+# Opencode
+alias oc='opencode'
+
 # Updates
 alias update='_ apt update && _ apt list --upgradable'
 alias upgrade='update && _ apt upgrade'
