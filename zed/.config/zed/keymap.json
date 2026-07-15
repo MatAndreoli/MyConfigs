@@ -138,4 +138,9 @@
       "ctrl-t": ["pane::CloseActiveItem", { "close_pinned": false }],
     },
   },
+  {
+    "bindings": {
+      "ctrl-alt-shift-p": "workspace::CopyPath",
+    },
+  },
 ]
