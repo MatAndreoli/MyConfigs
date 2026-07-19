@@ -144,3 +144,5 @@ alias lzd='lazydocker'
 
 # opencode
 export PATH=/home/matandreoli/.opencode/bin:$PATH
+
+neofetch
