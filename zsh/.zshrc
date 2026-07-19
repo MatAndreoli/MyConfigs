@@ -21,33 +21,40 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Add in Powerlevel10k
+# Add in Powerlevel10k (sync: it's the prompt itself)
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-# Add in zsh plugins
-zinit light zdharma-continuum/fast-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
+# Add in zsh plugins (wait = load async after first prompt, lucid = no reports)
+zinit ice wait lucid; zinit light zdharma-continuum/fast-syntax-highlighting
+zinit ice wait lucid; zinit light zsh-users/zsh-completions
+zinit ice wait lucid; zinit light zsh-users/zsh-autosuggestions
+zinit ice wait lucid; zinit light Aloxaf/fzf-tab
 
 function zvm_after_init() {
   bindkey "^P" history-beginning-search-backward
   bindkey "^N" history-beginning-search-forward
 }
 
+# zsh-vi-mode (sync: keybindings need to be ready before prompt)
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 
-# Add in snippets
-zinit snippet OMZ::plugins/git/git.plugin.zsh
-zinit snippet OMZP::git
-zinit snippet OMZP::mvn
-zinit snippet OMZP::sudo
-zinit ice lucid wait
-zinit snippet OMZP::fzf
+# Add in snippets (wait = load async, lucid = no "Loaded" reports)
+zinit ice wait lucid; zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit ice wait lucid; zinit snippet OMZP::git
+zinit ice wait lucid; zinit snippet OMZP::mvn
+zinit ice wait lucid; zinit snippet OMZP::sudo
+zinit ice wait lucid; zinit snippet OMZP::fzf
 
-# Load completions
-autoload -Uz compinit && compinit
+# Load completions (cached: rebuild only if .zcompdump missing or >7 days old)
+autoload -Uz compinit
+setopt extendedglob
+cache="${ZDOTDIR:-$HOME}/.zcompdump"
+if [[ ! -f "$cache" ]] || [[ -n "$cache(#qN.m+7)" ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 zinit cdreplay -q
 
@@ -98,10 +105,19 @@ export PATH="${HOME}/.local/bin":${PATH}
 # SDKMAN
 export SDKMAN_DIR="$HOME/.sdkman" && [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# NVM
+# NVM (lazy: loads nvm.sh on first call to nvm/node/npm/npx)
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+nvm() {
+  unset -f nvm node npm npx
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
+
+node() { nvm; command node "$@"; }
+npm() { nvm; command npm "$@"; }
+npx() { nvm; command npx "$@"; }
 
 # PYENV
 export PYENV_ROOT="$HOME/.pyenv"
@@ -111,11 +127,20 @@ eval "$(pyenv init -)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(zoxide init zsh)"
 
-[[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# GVM (lazy: loads gvm scripts on first call to gvm/go/gofmt)
+export GVM_ROOT="$HOME/.gvm"
+export PATH="$GVM_ROOT/bin:$PATH"
+
+gvm() {
+  unset -f gvm go gofmt 2>/dev/null
+  [ -s "$GVM_ROOT/scripts/gvm" ] && \. "$GVM_ROOT/scripts/gvm"
+  gvm "$@"
+}
+
+go() { gvm; command go "$@"; }
+gofmt() { gvm; command gofmt "$@"; }
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 alias lzd='lazydocker'
 
 # opencode
 export PATH=/home/matandreoli/.opencode/bin:$PATH
-
-neofetch
