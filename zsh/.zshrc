@@ -1,9 +1,12 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+
+# Starship prompt (init must come before any PROMPT= is set)
+eval "$(starship init zsh)"
 
 for config in ~/.customs/.*; do
   source "$config"
@@ -21,14 +24,14 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Add in Powerlevel10k (sync: it's the prompt itself)
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+# Add in Powerlevel10k (DISABLED: using starship now)
+# zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # Add in zsh plugins (wait = load async after first prompt, lucid = no reports)
 zinit ice wait lucid; zinit light zdharma-continuum/fast-syntax-highlighting
 zinit ice wait lucid; zinit light zsh-users/zsh-completions
-zinit ice wait lucid; zinit light zsh-users/zsh-autosuggestions
-zinit ice wait lucid; zinit light Aloxaf/fzf-tab
+zinit ice lucid; zinit light zsh-users/zsh-autosuggestions
+zinit ice lucid; zinit light Aloxaf/fzf-tab
 
 function zvm_after_init() {
   bindkey "^P" history-beginning-search-backward
@@ -59,7 +62,7 @@ fi
 zinit cdreplay -q
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 autoload -Uz edit-command-line
 zle -N edit-command-line
