@@ -21,6 +21,7 @@ $nodejs\
 $bun\
 $java\
 $python\
+$docker_context\
 [](fg:green bg:sapphire)\
 $status\
 [](fg:sapphire bg:lavender)\
@@ -68,7 +69,7 @@ format = "[ $user]($style)"
 style = "bg:peach fg:crust"
 format = "[ $path ]($style)"
 truncation_length = 3
-truncate_to_repo = true
+truncate_to_repo = false
 truncation_symbol = "…/"
 
 [directory.substitutions]
@@ -150,7 +151,15 @@ format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:crust bg:green)]($style)'
 [docker_context]
 symbol = ""
 style = "bg:sapphire"
-format = "[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)"
+format = "[[ $symbol( $context) ](fg:crust bg:green)]($style)"
+only_with_files = true
+detect_files = [
+  "compose.yml",
+  "compose.yaml",
+  "docker-compose.yml",
+  "docker-compose.yaml",
+  "Dockerfile"
+]
 
 [time]
 disabled = false
