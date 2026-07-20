@@ -23,8 +23,10 @@ $java\
 $python\
 $docker_context\
 [](fg:green bg:sapphire)\
+$kubernetes\
+[](fg:sapphire bg:cyan)\
 $status\
-[](fg:sapphire bg:lavender)\
+[](fg:cyan bg:lavender)\
 $time\
 [ ](fg:lavender)\
 $cmd_duration\
@@ -86,11 +88,11 @@ symbol = "  "
 disabled = false
 
 [status]
-style = "bg:sapphire fg:crust"
+style = "bg:cyan fg:crust"
 symbol = ""
 success_symbol = ""
 not_found_symbol = ""
-format = "[ $symbol $status]($style)"
+format = "[ $symbol $status ]($style)"
 map_symbol = true
 disabled = false
 pipestatus = true
@@ -148,6 +150,10 @@ symbol = ""
 style = "bg:green"
 format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:crust bg:green)]($style)'
 
+[kubernetes]
+format = '[  $context ](fg:crust bg:sapphire)'
+disabled = false
+
 [docker_context]
 symbol = ""
 style = "bg:sapphire"
@@ -181,11 +187,10 @@ vimcmd_visual_symbol = "[❮](bold fg:yellow)"
 
 [cmd_duration]
 show_milliseconds = true
+min_time = 0
 format = " in $duration "
 style = "bg:lavender"
 disabled = false
-show_notifications = true
-min_time_to_notify = 45000
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
