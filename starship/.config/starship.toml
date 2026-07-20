@@ -1,4 +1,4 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+"$schema" = "https://starship.rs/config-schema.json"
 
 add_newline = false
 
@@ -14,28 +14,23 @@ $git_branch\
 $git_status\
 $git_state\
 $git_metrics\
-[](bg:blue fg:yellow)\
-$status\
-[ ](fg:blue)\
-$line_break\
-$character"""
-
-right_format = """
-$cmd_duration\
-[](green)\
+[](fg:yellow bg:green)\
 $c\
 $golang\
 $nodejs\
 $bun\
 $java\
-$kotlin\
 $python\
-[](fg:green bg:lavender)\
+[](fg:green bg:sapphire)\
+$status\
+[](fg:sapphire bg:lavender)\
 $time\
 [ ](fg:lavender)\
-"""
+$cmd_duration\
+$line_break\
+$character"""
 
-palette = 'catppuccin_mocha'
+palette = "catppuccin_mocha"
 
 [os]
 disabled = false
@@ -67,12 +62,12 @@ RedHatEnterprise = "󱄛"
 show_always = true
 style_user = "bg:red fg:crust"
 style_root = "bg:red fg:crust"
-format = '[ $user]($style)'
+format = "[ $user]($style)"
 
 [directory]
 style = "bg:peach fg:crust"
 format = "[ $path ]($style)"
-truncation_length = 1
+truncation_length = 3
 truncate_to_repo = true
 truncation_symbol = "…/"
 
@@ -84,68 +79,68 @@ truncation_symbol = "…/"
 "Developer" = "󰲋 "
 
 [sudo]
-style = 'bg:red fg:crust'
-format = '[$symbol]($style)'
-symbol = '  '
+style = "bg:red fg:crust"
+format = "[$symbol]($style)"
+symbol = "  "
 disabled = false
 
 [status]
-style = 'bg:blue fg:crust'
-symbol = ''
-success_symbol = ''
-not_found_symbol = ''
-format = '[ $symbol $status]($style)'
+style = "bg:sapphire fg:crust"
+symbol = ""
+success_symbol = ""
+not_found_symbol = ""
+format = "[ $symbol $status]($style)"
 map_symbol = true
 disabled = false
 pipestatus = true
-pipestatus_format ='$pipestatus[ \[$symbol $common_meaning $signal_name $maybe_int\]]($style)'
-pipestatus_separator = ''
+pipestatus_format = '$pipestatus[ \[$symbol $common_meaning $signal_name $maybe_int\]]($style)'
+pipestatus_separator = ""
 
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
 
 [git_metrics]
-added_style = 'bold blue'
-format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+added_style = "bold blue"
+format = "[+$added]($added_style)/[-$deleted]($deleted_style) "
 
 [git_branch]
 symbol = ""
 style = "bg:yellow"
-format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
+format = "[[ $symbol $branch ](fg:crust bg:yellow)]($style)"
 
 [git_status]
 style = "bg:yellow"
-format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
-ahead = '⇡${count} '
-diverged = '⇕⇡${ahead_count}⇣${behind_count} '
-behind = '⇣${count} '
-conflicted = '~${count} '
+format = "[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)"
+ahead = "⇡${count} "
+diverged = "⇕⇡${ahead_count}⇣${behind_count} "
+behind = "⇣${count} "
+conflicted = "~${count} "
 stashed = "*${count} "
 
 [nodejs]
 symbol = ""
 style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+format = "[[ $symbol( $version) ](fg:crust bg:green)]($style)"
 
 [bun]
 symbol = ""
 style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+format = "[[ $symbol( $version) ](fg:crust bg:green)]($style)"
 
 [c]
 symbol = " "
 style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+format = "[[ $symbol( $version) ](fg:crust bg:green)]($style)"
 
 [golang]
 symbol = ""
 style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+format = "[[ $symbol( $version) ](fg:crust bg:green)]($style)"
 
 [java]
 symbol = " "
 style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+format = "[[ $symbol( $version) ](fg:crust bg:green)]($style)"
 
 [python]
 symbol = ""
@@ -155,25 +150,25 @@ format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:crust bg:green)]($style)'
 [docker_context]
 symbol = ""
 style = "bg:sapphire"
-format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
+format = "[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)"
 
 [time]
 disabled = false
 time_format = "%R"
 style = "bg:lavender"
-format = '[[  $time ](fg:crust bg:lavender)]($style)'
+format = "[[  $time ](fg:crust bg:lavender)]($style)"
 
 [line_break]
-disabled = true
+disabled = false
 
 [character]
 disabled = false
-success_symbol = '[❯](bold fg:green)'
-error_symbol = '[❯](bold fg:red)'
-vimcmd_symbol = '[❮](bold fg:green)'
-vimcmd_replace_one_symbol = '[❮](bold fg:lavender)'
-vimcmd_replace_symbol = '[❮](bold fg:lavender)'
-vimcmd_visual_symbol = '[❮](bold fg:yellow)'
+success_symbol = "[❯](bold fg:green)"
+error_symbol = "[❯](bold fg:red)"
+vimcmd_symbol = "[❮](bold fg:green)"
+vimcmd_replace_one_symbol = "[❮](bold fg:lavender)"
+vimcmd_replace_symbol = "[❮](bold fg:lavender)"
+vimcmd_visual_symbol = "[❮](bold fg:yellow)"
 
 [cmd_duration]
 show_milliseconds = true
