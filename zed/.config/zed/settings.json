@@ -8,10 +8,17 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   // ── Appearance ────────────────────────────────────────────────────────────
+  "proxy": "",
+  "colorize_brackets": true,
   "theme": {
     "mode": "dark",
     "light": "One Light",
     "dark": "One Dark Pro Vivid",
+  },
+  "experimental.theme_overrides": {
+    "syntax": {
+      "variable.property": { "color": "#e5c07b" },
+    },
   },
   "theme_overrides": {
     "One Dark": {
@@ -135,6 +142,7 @@
   "project_panel": {
     "dock": "left",
     "default_width": 400,
+    "hide_hidden": false,
     "hide_root": true,
     "auto_fold_dirs": false,
     "starts_open": false,

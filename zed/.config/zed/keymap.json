@@ -141,6 +141,7 @@
   {
     "bindings": {
       "ctrl-alt-shift-p": "workspace::CopyPath",
+      "ctrl-alt-shift-c": "workspace::CopyRelativePath",
     },
   },
 ]

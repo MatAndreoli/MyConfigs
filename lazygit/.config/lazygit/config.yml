@@ -37,11 +37,16 @@ gui:
       - "▰▰▰▰▰▰▰▰"
     rate: 90
 git:
-  paging:
-    pager: delta --syntax-theme Dracula --paging=never
+  diffRenderers:
+    - command: delta --syntax-theme Dracula --paging=never
 os:
-  editPreset: "nvim"
+  edit: "zed {{filename}}"
+  editAtLine: "zed {{filename}}:{{line}}"
 customCommands:
+  - key: "O"
+    context: "files"
+    description: "Open entire repo in editor"
+    command: "zed ."
   - key: "<c-p>"
     context: "files, commits"
     description: "push no verify"
