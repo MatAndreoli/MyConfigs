@@ -146,6 +146,17 @@ gofmt() { gvm; command gofmt "$@"; }
 alias lzd='lazydocker'
 
 # opencode
-export PATH=/home/matandreoli/.opencode/bin:$PATH
+export PATH=$HOME/.opencode/bin:$PATH
+
+nvm use default --silent 2>/dev/null
 
 neofetch
+
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+. "$HOME/.local/share/../bin/env"

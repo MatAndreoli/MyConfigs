@@ -27,6 +27,9 @@ alias rest='nv ~/Vivo/B2B/rest'
 # Opencode
 alias oc='opencode'
 
+# Claude Code
+alias cc='claude'
+
 # Updates
 alias update='_ apt update && _ apt list --upgradable'
 alias upgrade='update && _ apt upgrade'
