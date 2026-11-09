@@ -40,8 +40,7 @@ git:
   diffRenderers:
     - command: delta --syntax-theme Dracula --paging=never
 os:
-  edit: "zed {{filename}}"
-  editAtLine: "zed {{filename}}:{{line}}"
+  editCommand: "nvim"
 customCommands:
   - key: "O"
     context: "files"

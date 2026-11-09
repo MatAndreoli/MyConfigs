@@ -42,11 +42,6 @@ return {
       return ' ' .. vim.env.VIRTUAL_ENV_PROMPT
     end
 
-    local kulala = require 'kulala'
-    local function get_kulala_env()
-      return '󰘦 ' .. kulala.get_selected_env()
-    end
-
     require('lualine').setup {
       options = {
         icons_enabled = true,
@@ -67,12 +62,6 @@ return {
             get_python_venv,
             cond = function()
               return vim.bo.filetype == 'python'
-            end,
-          },
-          {
-            get_kulala_env,
-            cond = function()
-              return vim.bo.filetype == 'http'
             end,
           },
         },

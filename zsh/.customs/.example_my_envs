@@ -49,4 +49,4 @@ export PUB_CREDENTIAL_PSW=$VIVO_PSW
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 export ARXAN_PATH="/opt/arxan/4.12.0/bin"
-export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"

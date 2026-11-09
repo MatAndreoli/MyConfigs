@@ -42,7 +42,7 @@ require('lazy').setup({
     { import = 'lazyvim.plugins.extras.lang.helm' },
     { import = 'lazyvim.plugins.extras.lang.java' },
     { import = 'lazyvim.plugins.extras.lang.json' },
-    { import = 'lazyvim.plugins.extras.lang.markdown' },
+    -- { import = 'lazyvim.plugins.extras.lang.markdown' },
     { import = 'lazyvim.plugins.extras.lang.python' },
     { import = 'lazyvim.plugins.extras.lang.vue' },
 
@@ -51,7 +51,7 @@ require('lazy').setup({
 
     { import = 'lazyvim.plugins.extras.ui.smear-cursor' },
 
-    { import = 'lazyvim.plugins.extras.util.rest' },
+    -- { import = 'lazyvim.plugins.extras.util.rest' },
 
     { import = 'lazyvim.plugins.extras.coding.blink' },
     { import = 'lazyvim.plugins.extras.coding.luasnip' },

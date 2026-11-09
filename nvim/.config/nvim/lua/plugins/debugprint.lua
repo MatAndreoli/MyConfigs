@@ -26,6 +26,12 @@ return {
         mid_var = '", ',
         right_var = ')',
       },
+      ['java'] = {
+        left = 'System.out.println("',
+        right = '")',
+        mid_var = '", ',
+        right_var = ')',
+      },
     },
     keymaps = {
       normal = {

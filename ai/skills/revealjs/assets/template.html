@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" data-palette="midnight">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Deck title</title>
+  <!-- Pinned reveal.js 6.0.2 from jsDelivr, with SRI hashes (a wrong hash makes the browser block the file) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reset.css" integrity="sha384-eEwBkZrOoy1kAZn00sDVAezj2h5GAr6zv/XHy9KFt+7ios1iEkSMZObfrISpChg5" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reveal.css" integrity="sha384-rKClnwfQQ2b7LYSOAhRvm5m4LS7QKciQTAXBpVvr30y6oGB+ZBBXlpDnvFqlv5Eu" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/theme/black.css" integrity="sha384-Em7yfqLWKCWr6J902VXpdZl9SmRoIT9wi3ldpTDhxtq6UXkWI3Uq7SF7Pvbt9aQ1" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/plugin/highlight/monokai.css" integrity="sha384-0rrWATPYzlkqxkUhsXu1QkrO6K3rq4d6FqJQhcCJ7jQcZhb6plkpODMjpoiAYidE" crossorigin="anonymous">
+  <!-- Copy of assets/base-styles.css, loaded LAST so it overrides the theme -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section id="title" class="title-slide">
+        <p class="eyebrow">Topic · Audience</p>
+        <div class="rule"></div>
+        <h1>Deck title as a claim</h1>
+        <p class="subtitle">Team · Month Year</p>
+        <aside class="notes">Opening line. What the audience should take away.</aside>
+      </section>
+
+      <section id="point">
+        <h2>One idea, stated as the heading</h2>
+        <div class="content">
+          <ul class="lead">
+            <li>First supporting point</li>
+            <li>Second supporting point</li>
+            <li>Third supporting point</li>
+          </ul>
+        </div>
+        <aside class="notes">Talk track, numbers behind the claim, likely questions.</aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reveal.js" integrity="sha384-UilXW7W77EPIY5TmQGBrjhBPcfX40NqGwuIC8DGs6OeGTCxKy36B+DiOXtfqgk9S" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/plugin/highlight.js" integrity="sha384-Hu5Et6ig8WykZO/HryhvXlqMZc6g2Fcp+UnHZWh+IbbV1Y6ZdJ6R6f+sYcaKVlNx" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/plugin/notes.js" integrity="sha384-XUVoTb/UbE06yoCUaqswCPKSUvPq3q4heijGsemnUSS/JEgW1lNnK0rKlNwjuz7O" crossorigin="anonymous"></script>
+  <script>
+    Reveal.initialize({
+      width: 1280, height: 720, margin: 0.04,
+      center: false, display: 'flex',          // required by styles.css
+      hash: true, slideNumber: 'c/t', controlsLayout: 'edges',
+      transition: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'none' : 'slide',
+      plugins: [RevealHighlight, RevealNotes],
+    });
+  </script>
+</body>
+</html>
