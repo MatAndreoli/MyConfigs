@@ -99,6 +99,14 @@ Don't use the same layout on consecutive slides. Rotate: bullets + callout, card
 - Never stretch images; use `object-fit: cover` (`.media-fill`) with a fixed-height container.
 - Charts and diagrams: see `charts-and-graphics.md` (CSS bars, inline SVG, Chart.js only if needed, interactive controls); they read the palette tokens so they match the deck.
 
+## Motion
+
+- **Every card, step, stat, flow node, chevron and timeline point is animated** (fade + slide, staggered in DOM order). It is built into `assets/base-styles.css`; nothing to add in the markup as long as the items sit directly inside `.cols-*`, `.steps`, `.kpis`, `.flow`, `.chevrons` or `.timeline`. A new container type needs adding to the selector list at the end of the stylesheet.
+- **Scope: only the slide being presented, replayed on every visit.** The rules live under `section.present:not(.stack)` and use keyframes. `:not(.stack)` matters: a vertical stack wrapper is `.present` as well, so plain `section.present` animates all nested slides while hidden and they look finished when reached. Keyframes (not transitions) restart whenever the slide becomes current again.
+- Not `.fragment`: fragments need a click per item. Use them only for deliberate presenter-paced reveals.
+- Keep it quick (≈0.2 s between items, ≈0.6 s per item) and respect `prefers-reduced-motion` (the stylesheet already disables it).
+- The checker waits `--settle` seconds before each shot; with long staggers (many items) raise it so the screenshot shows the finished state.
+
 ## Accessibility
 
 - Contrast ≥ 4.5:1 for text (≥ 3:1 for large/bold), including text on `--surface` and on background images.

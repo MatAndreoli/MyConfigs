@@ -294,3 +294,29 @@
   .reveal .hbar .fill { transform: none; }
   .reveal svg .draw { stroke-dashoffset: 0; }
 }
+
+/* ---------- Entrance animation (cards, steps, stats, flows, chevrons, timelines) ---------- */
+/* Every card/step/stat/flow node/chevron/timeline point builds itself when ITS slide is shown, one after the other.
+   - Keyframes, not transitions, so the animation replays every time the slide becomes current (back and forth).
+   - Scoped to `section.present:not(.stack)`: a vertical stack wrapper is also .present, so without :not(.stack) every
+     nested slide would animate in the background and arrive already finished when you navigate down to it.
+   - No click needed (not .fragment). Use .fragment only when the presenter must control each step (fragments.md).
+   - The .45s base delay lets the slide transition finish first. Children of the listed containers get --i by position. */
+@keyframes build-up    { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes build-right { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: none; } }
+.reveal :is(.cols-2, .cols-3, .cols-4, .cols-1-2, .cols-2-1, .steps, .kpis, .flow, .chevrons, .timeline) > :nth-child(1) { --i: 0; }
+.reveal :is(.cols-2, .cols-3, .cols-4, .cols-1-2, .cols-2-1, .steps, .kpis, .flow, .chevrons, .timeline) > :nth-child(2) { --i: 1; }
+.reveal :is(.cols-2, .cols-3, .cols-4, .cols-1-2, .cols-2-1, .steps, .kpis, .flow, .chevrons, .timeline) > :nth-child(3) { --i: 2; }
+.reveal :is(.cols-2, .cols-3, .cols-4, .cols-1-2, .cols-2-1, .steps, .kpis, .flow, .chevrons, .timeline) > :nth-child(4) { --i: 3; }
+.reveal :is(.cols-2, .cols-3, .cols-4, .cols-1-2, .cols-2-1, .steps, .kpis, .flow, .chevrons, .timeline) > :nth-child(5) { --i: 4; }
+.reveal :is(.cols-2, .cols-3, .cols-4, .cols-1-2, .cols-2-1, .steps, .kpis, .flow, .chevrons, .timeline) > :nth-child(6) { --i: 5; }
+.reveal :is(.cols-2, .cols-3, .cols-4, .cols-1-2, .cols-2-1, .steps, .kpis, .flow, .chevrons, .timeline) > :nth-child(7) { --i: 6; }
+.reveal :is(.cols-2, .cols-3, .cols-4, .cols-1-2, .cols-2-1, .steps, .kpis, .flow, .chevrons, .timeline) > :nth-child(8) { --i: 7; }
+.reveal :is(.cols-2, .cols-3, .cols-4, .cols-1-2, .cols-2-1, .steps, .kpis, .flow, .chevrons, .timeline) > :nth-child(9) { --i: 8; }
+.reveal section.present:not(.stack) :is(.cols-2, .cols-3, .cols-4, .cols-1-2, .cols-2-1, .steps, .kpis) > :is(.card, .step, .stat) {
+  animation: build-up .6s cubic-bezier(.22,.8,.3,1) both; animation-delay: calc(.45s + var(--i) * .22s); }
+.reveal section.present:not(.stack) :is(.flow, .chevrons, .timeline) > * {
+  animation: build-right .5s cubic-bezier(.22,.8,.3,1) both; animation-delay: calc(.45s + var(--i) * .16s); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal section.present:not(.stack) :is(.cols-2, .cols-3, .cols-4, .cols-1-2, .cols-2-1, .steps, .kpis, .flow, .chevrons, .timeline) > * { animation: none !important; }
+}

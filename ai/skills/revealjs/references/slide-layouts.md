@@ -336,7 +336,7 @@ Put it as the **last child of the `<section>`, after the `.content` div**. It si
 | `.pill` | Tags |
 | `.callout` | One-sentence takeaway with a side bar |
 | `.rule` | Short accent bar under an eyebrow/title |
-| `.card`, `.stat`, `.step` | Panels |
+| `.card`, `.stat`, `.step` | Panels (animated automatically when the slide appears, see `design.md` Motion) |
 | `r-stack`, `r-fit-text`, `r-stretch`, `r-frame` | reveal helpers (`layout.md`) |
 | `.fragment` | Step-by-step reveal (`fragments.md`) |
 
