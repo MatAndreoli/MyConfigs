@@ -1,7 +1,7 @@
 ---
 description: Explora e mapeia a codebase, responde perguntas sobre arquitetura, encontra onde algo está implementado. Use quando precisar entender um repositório desconhecido ou localizar código antes de planejar/codificar.
 mode: subagent
-model: opencode-go/minimax-m3
+model: opencode-go/mimo-v2.5
 temperature: 0
 color: info
 permission:

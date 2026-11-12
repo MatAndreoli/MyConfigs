@@ -1,7 +1,7 @@
 ---
 description: Revisa código para segurança, performance, manutenibilidade e cobertura de testes. Use antes de mergear qualquer mudança relevante.
 mode: subagent
-model: opencode-go/glm-5.2
+model: opencode-go/minimax-m3
 temperature: 0
 color: error
 permission:

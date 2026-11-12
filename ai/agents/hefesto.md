@@ -1,7 +1,7 @@
 ---
 description: Agent principal de codificação genérica — usado quando a tarefa não é específica de uma stack (Java/Python/React/Node) ou cruza múltiplas. Delega para especialistas quando fizer sentido.
 mode: all
-model: opencode-go/minimax-m3
+model: opencode-go/glm-5.3-flash
 temperature: 0
 color: warning
 ---

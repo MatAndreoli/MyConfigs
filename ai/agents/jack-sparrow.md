@@ -1,7 +1,7 @@
 ---
 description: Especialista em Java e Quarkus. Use para escrever, refatorar ou depurar código Java, especialmente em serviços Quarkus (REST, CDI, Panache, GraalVM native image).
 mode: subagent
-model: opencode-go/deepseek-v4-pro
+model: opencode-go/glm-5.3-flash
 temperature: 0
 color: "#8B5E3C"
 permission:

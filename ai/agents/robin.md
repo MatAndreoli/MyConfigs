@@ -1,7 +1,7 @@
 ---
 description: Especialista em Node.js e NestJS. Use para escrever, refatorar ou depurar APIs, módulos, providers, microsserviços em Node/NestJS.
 mode: subagent
-model: opencode-go/deepseek-v4-flash
+model: opencode-go/glm-5.3-flash
 temperature: 0
 color: "#C1272D"
 permission:

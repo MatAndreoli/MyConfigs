@@ -1,7 +1,7 @@
 ---
 description: Planeja tarefas complexas antes de codificar, quebra features em passos, avalia trade-offs e riscos. Use antes de qualquer implementação não-trivial.
 mode: primary
-model: opencode-go/qwen3.7-plus
+model: opencode-go/glm-5.3-flash
 temperature: 0.2
 color: primary
 permission:
