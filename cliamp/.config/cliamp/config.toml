@@ -1,0 +1,10 @@
+theme = ""
+provider = "ytmusic"
+shuffle = true
+show_metadata = true
+volume = -28
+visualizer = "ClassicPeak"
+
+[ytmusic]
+enabled = true
+cookies_from = "firefox:~/.config/zen"
