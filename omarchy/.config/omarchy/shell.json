@@ -1,0 +1,117 @@
+{
+  "bar": {
+    "background": "glassy",
+    "layout": {
+      "center": [
+        {
+          "format": "ddd d MMM HH:mm",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "id": "omarchy.clock",
+          "verticalFormat": "HH\n—\nmm"
+        }
+      ],
+      "centerBegin": [
+        {
+          "id": "omarchy.indicators"
+        }
+      ],
+      "centerEnd": [
+        {
+          "id": "omarchy.weather"
+        },
+        {
+          "id": "jankeesvw.notification-center"
+        },
+        {
+          "id": "io.github.qempexe.omaudix"
+        },
+        {
+          "id": "omarchy.system-update"
+        }
+      ],
+      "left": [
+        {
+          "id": "omarchy.menu"
+        },
+        {
+          "id": "omarchy.workspaces"
+        },
+        {
+          "id": "omaplug"
+        }
+      ],
+      "right": [
+        {
+          "id": "omarchy.tray"
+        },
+        {
+          "id": "omarchy.agents"
+        },
+        {
+          "id": "omarchy.keyboard-layout"
+        },
+        {
+          "id": "omarchy.bluetooth"
+        },
+        {
+          "id": "omarchy.network"
+        },
+        {
+          "id": "omarchy.audio"
+        },
+        {
+          "id": "omarchy.monitor"
+        },
+        {
+          "id": "omarchy.power"
+        }
+      ],
+      "tray": [
+        {
+          "id": "superwhisper.panel"
+        }
+      ]
+    },
+    "position": "top"
+  },
+  "cloneSourceRestores": [
+    "alanfortlink.clipboard",
+    "io.github.sirjul1337.lock-explorer"
+  ],
+  "disabledPlugins": ["omarchy.clipboard", "omarchy.lock"],
+  "dock": {
+    "pinned": [
+      "org.gnome.Nautilus",
+      "chromium",
+      "foot",
+      "omacalc",
+      "omawrite",
+      "X",
+      "YouTube"
+    ],
+    "position": "bottom"
+  },
+  "idle": {
+    "lock": 1800,
+    "screensaver": 180
+  },
+  "plugins": [
+    {
+      "id": "io.github.hugorolimf.alttab"
+    },
+    {
+      "id": "alanfortlink.clipboard"
+    },
+    {
+      "design": "seismograph",
+      "favorites": ["seismograph"],
+      "id": "io.github.sirjul1337.lock-explorer",
+      "openAs": "panel",
+      "tourSeen": true
+    },
+    {
+      "id": "bobbynicholas.omaland"
+    }
+  ],
+  "version": 1
+}
