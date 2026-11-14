@@ -37,6 +37,9 @@
           "id": "omarchy.workspaces"
         },
         {
+          "id": "io.github.twiking.omacontrol"
+        },
+        {
           "id": "omaplug"
         }
       ],
@@ -78,7 +81,10 @@
     "alanfortlink.clipboard",
     "io.github.sirjul1337.lock-explorer"
   ],
-  "disabledPlugins": ["omarchy.clipboard", "omarchy.lock"],
+  "disabledPlugins": [
+    "omarchy.clipboard",
+    "omarchy.lock"
+  ],
   "dock": {
     "pinned": [
       "org.gnome.Nautilus",
@@ -104,7 +110,9 @@
     },
     {
       "design": "seismograph",
-      "favorites": ["seismograph"],
+      "favorites": [
+        "seismograph"
+      ],
       "id": "io.github.sirjul1337.lock-explorer",
       "openAs": "panel",
       "tourSeen": true
