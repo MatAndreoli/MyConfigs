@@ -74,6 +74,23 @@ function icon(p, size, color) {
   return p.tint ? svg(p.icon).size(size).flex_none().text_color(color) : image(p.icon).w(size).h(size).flex_none();
 }
 
+// The focused row's pill sits behind the rows, inside a dark chip. Two springs per pill, one per edge: the edge
+// facing the direction of travel is stiff, the other soft, so it stretches toward the new row and then pulls its
+// tail in. Native springs only reach `top` and `height`, so the bottom edge is an outer box (`height` = bottom
+// edge) and the top edge is the inner pill's `top`, which runs to the outer's bottom. 620/40 and 170/19
+// (stiffness/damping) as response (2\u03c0/\u221ak ms) and damping ratio (c/2\u221ak).
+const DARK = "#07090f";
+function stretchPill(owner, t, y, h) {
+  if (y === null || y === undefined) return null;
+  if (owner.pillY !== undefined && owner.pillY !== y) owner.pillDir = y > owner.pillY ? 1 : -1;
+  owner.pillY = y;
+  const lead = { response: 252, damping: 0.8 }, trail = { response: 482, damping: 0.73 };
+  const down = (owner.pillDir ?? 1) > 0;
+  return div().id("pill").absolute().left(0).right(0).top(0).h(y + h).spring("height", down ? lead : trail)
+    .child(div().id("pill-in").absolute().left(0).right(0).top(y).bottom(0).rounded(999).bg(t.foreground)
+      .spring("top", down ? trail : lead));
+}
+
 export default class Agents extends View {
   init(_props, cx) {
     if (props()?.sortMenu) return;
@@ -294,7 +311,8 @@ export default class Agents extends View {
     }
 
     const row = (a, i, subs = []) => {
-      const pic = icon(a.program, 16, t.foreground);
+      const pic = icon(a.program, 16, a.focused ? DARK : t.foreground);
+      const faint = a.focused ? DARK + "99" : t.dim;
       const more = detail.get(a.address);
       // An agent on another machine (`vps/t7`) says which.
       const machine = a.address.includes("/") ? a.address.split("/")[0] : null;
@@ -343,9 +361,8 @@ export default class Agents extends View {
         .rounded(8)
         .items_center()
         .gap(9)
-        .when(a.focused, (el) => el.bg(t.selected))
         .cursor_pointer()
-        .hover((s) => s.bg(t.hover))
+        .when(!a.focused, (el) => el.hover((s) => s.bg(t.hover)))
         .on_hover((on, cx) => {
           if (on) this.hovered = a.address;
           else if (this.hovered === a.address) this.hovered = null;
@@ -359,12 +376,12 @@ export default class Agents extends View {
             cx.notify();
           })).child(pic)))
         .child(h_flex().flex_1().min_w(0).gap(5).items_center()
-          .child(div().min_w(0).max_w(full && more ? 120 : 200).truncate().text_color(idle ? t.muted : t.foreground).child(name))
-          .when(full && Boolean(more), el => el.child(div().flex_1().min_w(0).truncate().text_color(t.dim).child(`\u00b7 ${more}`))))
-        .when(Boolean(machine), el => el.child(div().text_size(10).text_color(t.dim).child(machine)))
+          .child(div().min_w(0).max_w(full && more ? 120 : 200).truncate().text_color(a.focused ? DARK : idle ? t.muted : t.foreground).child(name))
+          .when(full && Boolean(more), el => el.child(div().flex_1().min_w(0).truncate().text_color(faint).child(`\u00b7 ${more}`))))
+        .when(Boolean(machine), el => el.child(div().text_size(10).text_color(faint).child(machine)))
         .when(subs.length > 0, el => el.child(fold(a, subs)))
         .when(this.hovered === a.address, el => el.child(pin))
-        .when(this.hovered !== a.address && Boolean(when), el => el.child(div().flex_none().text_size(11).text_color(t.dim).child(duration(now - when))))
+        .when(this.hovered !== a.address && Boolean(when), el => el.child(div().flex_none().text_size(11).text_color(faint).child(duration(now - when))))
         .child(this.status(t, a, byPriority && !isPinned));
     };
 
@@ -409,11 +426,10 @@ export default class Agents extends View {
       ? list.flatMap(withKids)
       : groups.flatMap((g) => [place(header(g), 30), ...(this.folded.has(g.id) ? [] : g.members.flatMap(withKids))]);
 
-    // An accent bar behind the rows slides to the focused agent.
-    const bar = activeY === null || collapsed ? null : div().id("agent-indicator").absolute()
-      .left(1).w(3).h(16).rounded(2).bg(t.accent)
-      .top(activeY + 7)
-      .spring("top", { response: 320, damping: 0.55 });
+    // The rows in a dark chip, with a light pill behind them that stretches to the focused agent.
+    const pill = collapsed ? null : stretchPill(this, t, activeY, 30);
+    const inner = v_flex().relative().w_full().flex_none().children(pill ? [pill, ...rows] : rows);
+    const chip = !collapsed && rows.length > 0;
     return v_flex()
       .size_full()
       .min_h(0)
@@ -447,7 +463,7 @@ export default class Agents extends View {
       .when(list.length === 0 && !collapsed, (el) =>
         el.child(div().px(12).text_size(12).text_color(t.dim).child("No agent status yet. Agents show up here when they report their status. Older versions and agents inside tmux may not.")),
       )
-      .child(v_flex().id("ag-list").flex_1().min_h(0).px(collapsed ? 0 : 8).overflow_y_scrollbar().mode("always").child(v_flex().relative().w_full().flex_none().children(bar ? [bar, ...rows] : rows)))
+      .child(v_flex().id("ag-list").flex_1().min_h(0).px(collapsed ? 0 : 8).overflow_y_scrollbar().mode("always").child(chip ? v_flex().id("ag-chip").w_full().flex_none().p(4).rounded(18).bg(t.background).border(1).border_color(t.border).child(inner) : inner))
       .when(collapsed, (el) =>
         el.child(
           h_flex()

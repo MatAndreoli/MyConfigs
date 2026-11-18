@@ -50,6 +50,7 @@ export default class Tabs extends View {
     const t = theme();
     const variant = props()?.variant ?? "slide";
     this.tabW ??= {};
+    const chip = variant === "stretch", gap = chip ? 0 : 3;
     const space = spaces().find(p => p.active);
     const shown = space?.tabs ?? [];
     const stop = (_e, cx) => cx.stop_propagation();
@@ -59,9 +60,32 @@ export default class Tabs extends View {
     const spot = () => {
       const i = shown.findIndex(c => c.active);
       if (i < 0 || shown.slice(0, i + 1).some(c => this.tabW[c.id] === undefined)) return null;
-      return { left: shown.slice(0, i).reduce((x, c) => x + this.tabW[c.id] + 3, 0), width: this.tabW[shown[i].id] };
+      return { left: shown.slice(0, i).reduce((x, c) => x + this.tabW[c.id] + gap, 0), width: this.tabW[shown[i].id] };
+    };
+    // Two springs per pill, one per edge: the edge facing the direction of travel is stiff, the other soft,
+    // so the pill stretches toward the new tab and then pulls its tail in. Native springs only reach `left`
+    // and `width`, so the right edge is an outer box (`width` = right edge) and the left edge is the inner
+    // pill's `left`, which runs to the outer's right side. Values are the Tab Pill's 620/40 and 170/19
+    // (stiffness/damping) as response (2π/√k ms) and damping ratio (c/2√k).
+    const stretch = () => {
+      const at = spot();
+      if (!at) return null;
+      const activeId = shown.find(c => c.active)?.id;
+      if (activeId !== this.activeId) {
+        const from = shown.findIndex(c => c.id === this.activeId), to = shown.findIndex(c => c.id === activeId);
+        if (from >= 0) this.dir = to > from ? 1 : -1;
+        this.activeId = activeId;
+      }
+      const lead = { response: 252, damping: 0.8 }, trail = { response: 482, damping: 0.73 };
+      const right = (this.dir ?? 1) > 0;
+      return div().id("tab-stretch").absolute().left(0).top(0).h(27).w(at.left + at.width)
+        .spring("width", right ? lead : trail)
+        .child(div().id("tab-stretch-pill").absolute().left(at.left).right(0).top(0).bottom(0).rounded(999)
+          .bg(t.foreground)
+          .spring("left", right ? trail : lead));
     };
     const indicator = () => {
+      if (variant === "stretch") return stretch();
       const at = spot();
       if (!at || !["slide", "spring", "underline"].includes(variant)) return null;
       const line = variant === "underline";
@@ -95,6 +119,10 @@ export default class Tabs extends View {
       } else if (variant === "grow") {
         tab.h(c.active ? 33 : 25).transition("height", { duration: 180, easing: "ease-out" })
           .border_color(c.active ? t.border : t.chrome).bg(c.active ? t.raised : t.chrome).hover(s => s.bg(t.hover));
+      } else if (variant === "stretch") {
+        // The pill travels behind the tabs, so they paint nothing of their own (an opaque tab would hide it).
+        tab.h(27).px(14).rounded(999).border_color("#00000000").text_color(c.active ? "#07090f" : t.muted)
+          .when(!c.active, el => el.hover(s => s.text_color(t.foreground)));
       } else {
         // slide / spring / underline: an indicator travels behind the tabs, the tabs stay bare.
         tab.border_color(t.chrome).bg(t.chrome).hover(s => s.bg(t.hover));
@@ -108,11 +136,11 @@ export default class Tabs extends View {
           else run("tab.select", { id: c.id });
         })
         .on_mouse_down("right", (_e, cx) => { cx.stop_propagation(); openOverlay({ mod: "menu", kind: "popup", width: 200, props: { tab: "tab", target: { id: c.id, space: space.id } } }); })
-        .when(Boolean(program?.icon), el => el.child(program.tint ? svg(program.icon).size(14).text_color(t.muted) : image(program.icon).size(14)))
+        .when(Boolean(program?.icon), el => el.child(program.tint ? svg(program.icon).size(14).text_color(chip && c.active ? "#07090f" : t.muted) : image(program.icon).size(14)))
         .child(div().max_w(170).truncate().child(c.zoomed ? `${name} Z` : name))
         .when(c.status === "working", el => el.child(svg("mods/workspace-chrome/spinner.svg").size(12).flex_none().text_color(t.working).spin(900)))
         .when(c.status === "blocked" || c.status === "done", el => el.child(div().size(6).rounded(3).bg(t[c.status])))
-        .when(c.active, el => el.child(div().id(`close-${c.id}`).text_color(t.dim).on_mouse_down("left", stop).on_click((_e, cx) => { cx.stop_propagation(); run("tab.close", { id: c.id }); }).child(svg("mods/pane/close.svg").size(12))));
+        .when(c.active, el => el.child(div().id(`close-${c.id}`).text_color(chip ? "#07090f99" : t.dim).on_mouse_down("left", stop).on_click((_e, cx) => { cx.stop_propagation(); run("tab.close", { id: c.id }); }).child(svg("mods/pane/close.svg").size(12))));
     };
     const root = layout(), sidebar = find(root, "sidebar"), w = window();
     // Old saved rails and a dragged-narrow sidebar can be smaller than the window buttons.
@@ -136,12 +164,15 @@ export default class Tabs extends View {
       .on_mouse_up("left", () => { this.pressed = null; })
       .on_scroll_wheel(e => { if (Math.abs(e.delta.y) >= 1) run(e.delta.y > 0 ? "tab.prev" : "tab.next"); })
       .child(h_flex().id("tab-scroll").flex_1().min_w(0).h_full().items_center().gap(3).overflow_x_scrollbar()
-        .child(h_flex().id("tab-strip").relative().h_full().items_center().gap(3).flex_none()
-          .children([highlight(), indicator(), ...shown.map(item)].filter(Boolean))))
+        .child(h_flex().id("tab-chip").items_center().flex_none()
+          .when(chip, el => el.p(4).rounded(999).bg(t.background).border(1).border_color(t.border))
+          .child(h_flex().id("tab-strip").relative().when(!chip, el => el.h_full()).when(chip, el => el.h(27)).items_center().gap(gap).flex_none()
+            .children([highlight(), indicator(), ...shown.map(item)].filter(Boolean)))))
       .child(button("tab-new", "+", () => openOverlay({ mod: "new-menu", kind: "popup", width: 250, height: 512 })))
       .when(enabled.includes("files"), el => el.child(panelButton("files", "Files", "mods/files/file.svg")))
       .when(enabled.includes("changes"), el => el.child(panelButton("changes", "Changes", "mods/changes/changes.svg")))
       .child(h_flex().id("flow-usage").h(26).px(8).gap(5).flex_none().items_center().rounded(6)
+        .on_size_change((sz) => { this.flowW = sz.width; })
         .text_size(12).bg(t.chrome).text_color(t.muted).hover(s => s.bg(t.hover)).on_mouse_down("left", stop)
         .on_click(() => {
           // Toggle: an outside click (this one included) dismisses the popup before we run, so a popup that
@@ -154,8 +185,11 @@ export default class Tabs extends View {
           // just inside the window buttons.
           const sb = find(layout(), "sidebar");
           const sidebarW = sb?.hidden ? 0 : sb?.size?.px ?? shared("sidebar.width") ?? 0;
-          const right = sidebarW + (this.barW ?? 0) - (w?.buttons ? 92 : 12);
-          openOverlay({ mod: "flow-usage", kind: "popup", width: 300, height: 124, at: { x: Math.max(8, right - 300), y: 42 } });
+          // The card is the button grown (a morph popover): it opens over the button, right edges aligned.
+          // The button's right edge is the bar's, less its padding (10) and the three window buttons (26 + 3 gap each).
+          const right = sidebarW + (this.barW ?? 0) - (w?.buttons ? 97 : 10);
+          openOverlay({ mod: "flow-usage", kind: "popup", frame: "none", width: 300, height: 168, at: { x: Math.max(8, right - 300), y: 8 },
+            props: { from: { w: this.flowW ?? 112, h: 26 } } });
         })
         .child(svg("mods/tabs-anim/usage.svg").size(14)).child("Flow Budget"))
       .when(w?.buttons, el => el.child(button("minimize", w.platform === "windows" ? svg("mods/tabs-anim/win-min.svg").size(16) : "−", () => run("window.minimize")))

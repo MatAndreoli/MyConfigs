@@ -36,6 +36,23 @@ const FALLBACK = 60000;
 // that draws space avatars): one strong color per hue, light and dark alike.
 const MARK = { ansi6: "#22a99a", ansi3: "#e3814f", ansi4: "#5b8def", ansi5: "#8b7cf6", ansi2: "#3fae6a", ansi1: "#d9649a" };
 
+// The active row's pill sits behind the rows, inside a dark chip. Two springs per pill, one per edge: the edge
+// facing the direction of travel is stiff, the other soft, so it stretches toward the new row and then pulls its
+// tail in. Native springs only reach `top` and `height`, so the bottom edge is an outer box (`height` = bottom
+// edge) and the top edge is the inner pill's `top`, which runs to the outer's bottom. 620/40 and 170/19
+// (stiffness/damping) as response (2π/√k ms) and damping ratio (c/2√k).
+const DARK = "#07090f";
+function stretchPill(owner, t, y, h) {
+  if (y === null || y === undefined) return null;
+  if (owner.pillY !== undefined && owner.pillY !== y) owner.pillDir = y > owner.pillY ? 1 : -1;
+  owner.pillY = y;
+  const lead = { response: 252, damping: 0.8 }, trail = { response: 482, damping: 0.73 };
+  const down = (owner.pillDir ?? 1) > 0;
+  return div().id("pill").absolute().left(0).right(0).top(0).h(y + h).spring("height", down ? lead : trail)
+    .child(div().id("pill-in").absolute().left(0).right(0).top(y).bottom(0).rounded(999).bg(t.foreground)
+      .spring("top", down ? trail : lead));
+}
+
 // A space speaks up only when something in it needs you.
 export function glyph(status) {
   return status === "blocked" || status === "done" ? "●" : "·";
@@ -352,7 +369,7 @@ export default class Spaces extends View {
   // Only what's unusual, after the name: "herdr \u00b7 spike \u21912 \u21931". The repo or
   // branch goes when the name already says it (a worktree is named after its branch),
   // and master/main go: nearly every space is on one.
-  gitTail(g, tree, name, t) {
+  gitTail(g, tree, name, t, on) {
     const raw = g.branch ?? "detached";
     const same = (a) => a.toLowerCase() === name.toLowerCase();
     const branch = same(raw) || raw === "master" || raw === "main" ? "" : raw;
@@ -365,7 +382,7 @@ export default class Spaces extends View {
       .justify_end()
       .items_center()
       .text_size(11.5)
-      .text_color(t.dim)
+      .text_color(on ? DARK + "99" : t.dim)
       .when(Boolean(where), (el) => el.child(div().min_w(0).truncate().child(where)))
       .when(g.ahead > 0, (el) => el.child(div().flex_none().text_color(t.ansi2).child(`\u2191${g.ahead}`)))
       .when(g.behind > 0, (el) => el.child(div().flex_none().text_color(t.ansi1).child(`\u2193${g.behind}`)));
@@ -385,7 +402,6 @@ export default class Spaces extends View {
       .flex_none()
       .justify_center()
       .rounded(8)
-      .when(on, (el) => el.bg(t.selected))
       .when(!on, (el) => el.hover((s) => s.bg(t.hover)))
       .when(this.pressed === w.id && this.over !== w.id, (el) => el.opacity(0.5))
       .when(this.pressed !== null && this.over === w.id && this.pressed !== w.id, (el) => el.child(
@@ -421,10 +437,10 @@ export default class Spaces extends View {
         h_flex()
           .gap(9)
           .items_center()
-          .when(Boolean(tree), el => el.pl(22).child(svg("mods/workspace-chrome/branch.svg").size(13).text_color(t.dim)))
+          .when(Boolean(tree), el => el.pl(22).child(svg("mods/workspace-chrome/branch.svg").size(13).text_color(on ? DARK : t.dim)))
           .when(!tree, el => el.child(h_flex().size(18).flex_none().rounded(5).bg(fill).items_center().justify_center().text_size(10.5).font_bold().text_color("#ffffff").child([...w.name][0]?.toUpperCase() ?? "?")))
-          .child(div().flex_shrink(0).max_w(150).truncate().text_color(t.foreground).child(w.name))
-          .child(g ? this.gitTail(g, tree, w.name, t) : div().flex_1()),
+          .child(div().flex_shrink(0).max_w(150).truncate().text_color(on ? DARK : t.foreground).child(w.name))
+          .child(g ? this.gitTail(g, tree, w.name, t, on) : div().flex_1()),
       );
   }
 
@@ -442,14 +458,13 @@ export default class Spaces extends View {
       .child(div().text_color(tone(t, w.status)).child(glyph(w.status)));
   }
 
-  // The rows, with an accent bar behind them that slides to the active one.
+  // The rows in a dark chip, with a light pill behind them that stretches to the active one.
   list(t, collapsed) {
     const rows = this.grouped(t, collapsed);
-    const bar = this.activeY === null || collapsed ? null : div().id("space-indicator").absolute()
-      .left(1).w(3).h(16).rounded(2).bg(t.accent)
-      .top(this.activeY + (this.activeH - 16) / 2)
-      .spring("top", { response: 320, damping: 0.55 });
-    return v_flex().relative().w_full().flex_none().children(bar ? [bar, ...rows] : rows);
+    if (collapsed) return v_flex().relative().w_full().flex_none().children(rows);
+    const pill = stretchPill(this, t, this.activeY, this.activeH);
+    return v_flex().id("space-chip").w_full().flex_none().p(4).rounded(18).bg(t.background).border(1).border_color(t.border)
+      .child(v_flex().relative().w_full().flex_none().children(pill ? [pill, ...rows] : rows));
   }
 
   render() {

@@ -80,7 +80,7 @@
           "content": {
             "mod": "tabs-anim",
             "props": {
-              "variant": "underline"
+              "variant": "stretch"
             }
           },
           "size": {
