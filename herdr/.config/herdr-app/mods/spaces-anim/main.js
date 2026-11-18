@@ -451,19 +451,18 @@ export default class Spaces extends View {
       .flex_none()
       .justify_center()
       .gap(4)
-      .when(w.active, (el) => el.bg(t.raised))
-      .hover((s) => s.bg(t.hover))
+      .rounded(13)
+      .when(!w.active, (el) => el.hover((s) => s.bg(t.hover)))
       .on_click(() => run("space.select", { id: w.id }))
-      .child(div().text_color(w.active ? t.foreground : t.muted).child(String(i + 1)))
-      .child(div().text_color(tone(t, w.status)).child(glyph(w.status)));
+      .child(div().text_color(w.active ? DARK : t.muted).child(String(i + 1)))
+      .child(div().text_color(w.active && glyph(w.status) === "\u00b7" ? DARK : tone(t, w.status)).child(glyph(w.status)));
   }
 
   // The rows in a dark chip, with a light pill behind them that stretches to the active one.
   list(t, collapsed) {
     const rows = this.grouped(t, collapsed);
-    if (collapsed) return v_flex().relative().w_full().flex_none().children(rows);
     const pill = stretchPill(this, t, this.activeY, this.activeH);
-    return v_flex().id("space-chip").w_full().flex_none().p(4).rounded(18).bg(t.background).border(1).border_color(t.border)
+    return v_flex().id("space-chip").w_full().flex_none().p(collapsed ? 3 : 4).rounded(collapsed ? 16 : 18).bg(t.background).border(1).border_color(t.border)
       .child(v_flex().relative().w_full().flex_none().children(pill ? [pill, ...rows] : rows));
   }
 
@@ -487,7 +486,7 @@ export default class Spaces extends View {
         .when(!collapsed, el => el.child("Spaces"))
         .child(div().id("space-new").size(26).flex_none().flex().items_center().justify_center().rounded(6).hover(s => s.bg(t.hover).text_color(t.foreground))
           .on_click(() => run("space.new")).child(svg("mods/workspace-chrome/plus.svg").size(14))))
-      .child(v_flex().flex_1().min_h(0).px(8).pb(14).overflow_y_scrollbar().mode("always")
+      .child(v_flex().flex_1().min_h(0).px(collapsed ? 4 : 8).pb(14).overflow_y_scrollbar().mode("always")
         .on_mouse_up("left", (_e, cx) => { this.pressed = null; cx.notify(); })
         .child(this.list(t, collapsed)));
   }

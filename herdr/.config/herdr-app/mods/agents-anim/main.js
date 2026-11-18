@@ -227,13 +227,14 @@ export default class Agents extends View {
   }
 
   // compact: a ! for blocked where a header already says "Needs you".
-  status(t, a, compact = false) {
+  // ink: the row is on the light pill, so the spinner and the ring draw dark.
+  status(t, a, compact = false, ink = false) {
     const color = t[a.status] ?? t.dim;
-    if (a.status === "working") return svg("mods/workspace-chrome/spinner.svg").size(12).mx(1).flex_none().text_color(t.working).spin(900);
+    if (a.status === "working") return svg("mods/workspace-chrome/spinner.svg").size(12).mx(1).flex_none().text_color(ink ? DARK : t.working).spin(900);
     if (a.status === "blocked" && compact) return div().size(14).flex_none().rounded(4).bg(t.blocked + "26").text_size(10.5).font_bold().text_color(t.blocked).flex().items_center().justify_center().child("!");
     if (a.status === "blocked") return div().flex_none().px(6).h(18).rounded(5).bg(t.blocked + "26").text_size(10.5).font_semibold().text_color(t.blocked).flex().items_center().child("Needs you");
     // Idle: a ring; done: a dot.
-    if (a.status === "idle") return div().size(7).mx(3).flex_none().rounded(4).border(1.5).border_color(t.idle ?? t.dim);
+    if (a.status === "idle") return div().size(7).mx(3).flex_none().rounded(4).border(1.5).border_color(ink ? DARK : t.idle ?? t.dim);
     return div().size(7).mx(3).flex_none().rounded(4).bg(a.status === "done" ? color : t.dim + "00");
   }
 
@@ -320,14 +321,14 @@ export default class Agents extends View {
         return h_flex()
           .id(`ag-${a.address}`)
           .h(26)
-          .px(8)
+          .px(2)
           .flex_none()
           .items_center()
-          .gap(4)
-          .hover((s) => s.bg(t.hover))
+          .gap(2)
+          .when(!a.focused, (el) => el.hover((s) => s.bg(t.hover)))
           .on_click(() => run("pane.focus", { pane: a.pane }))
-          .child(div().flex_1().min_w(0).whitespace_nowrap().text_right().text_color(t.muted).child(String(i + 1)))
-          .child(h_flex().w(14).flex_none().items_center().justify_center().child(this.status(t, a, true)));
+          .child(div().flex_1().min_w(0).whitespace_nowrap().text_right().text_color(a.focused ? DARK : t.muted).child(String(i + 1)))
+          .child(h_flex().w(14).flex_none().items_center().justify_center().child(this.status(t, a, true, a.focused)));
       }
       const when = this.since(a);
       const idle = a.status === "idle" && !a.focused;
@@ -382,7 +383,7 @@ export default class Agents extends View {
         .when(subs.length > 0, el => el.child(fold(a, subs)))
         .when(this.hovered === a.address, el => el.child(pin))
         .when(this.hovered !== a.address && Boolean(when), el => el.child(div().flex_none().text_size(11).text_color(faint).child(duration(now - when))))
-        .child(this.status(t, a, byPriority && !isPinned));
+        .child(this.status(t, a, byPriority && !isPinned, a.focused));
     };
 
     // Groups in list order: spaces (grouped) or priority sections. Agents of a
@@ -427,9 +428,9 @@ export default class Agents extends View {
       : groups.flatMap((g) => [place(header(g), 30), ...(this.folded.has(g.id) ? [] : g.members.flatMap(withKids))]);
 
     // The rows in a dark chip, with a light pill behind them that stretches to the focused agent.
-    const pill = collapsed ? null : stretchPill(this, t, activeY, 30);
+    const pill = stretchPill(this, t, activeY, collapsed ? 26 : 30);
     const inner = v_flex().relative().w_full().flex_none().children(pill ? [pill, ...rows] : rows);
-    const chip = !collapsed && rows.length > 0;
+    const chip = rows.length > 0;
     return v_flex()
       .size_full()
       .min_h(0)
@@ -463,7 +464,7 @@ export default class Agents extends View {
       .when(list.length === 0 && !collapsed, (el) =>
         el.child(div().px(12).text_size(12).text_color(t.dim).child("No agent status yet. Agents show up here when they report their status. Older versions and agents inside tmux may not.")),
       )
-      .child(v_flex().id("ag-list").flex_1().min_h(0).px(collapsed ? 0 : 8).overflow_y_scrollbar().mode("always").child(chip ? v_flex().id("ag-chip").w_full().flex_none().p(4).rounded(18).bg(t.background).border(1).border_color(t.border).child(inner) : inner))
+      .child(v_flex().id("ag-list").flex_1().min_h(0).px(collapsed ? 4 : 8).overflow_y_scrollbar().mode("always").child(chip ? v_flex().id("ag-chip").w_full().flex_none().p(collapsed ? 3 : 4).rounded(collapsed ? 16 : 18).bg(t.background).border(1).border_color(t.border).child(inner) : inner))
       .when(collapsed, (el) =>
         el.child(
           h_flex()
