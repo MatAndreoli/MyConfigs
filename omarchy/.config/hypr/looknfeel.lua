@@ -58,17 +58,19 @@
 -- Written by Omaland. Safe to hand-edit: Omaland re-reads this block
 -- every time it opens, and only ever rewrites what's between the fences.
 hl.config({
-  decoration = {
-    rounding = 14,
-  },
+	decoration = {
+		rounding = 14,
+	},
 
-  general = {
-    gaps_in = 2,
-    gaps_out = 3,
+	general = {
+		gaps_in = 2,
+		gaps_out = 3,
 
-    snap = {
-      enabled = true,
-    },
-  },
+		snap = {
+			enabled = true,
+		},
+	},
 })
 -- <<< omaland managed block <<<
+
+hl.animation({ leaf = "workspaces", enabled = true, speed = 2, bezier = "easeOutQuint", style = "slide" })

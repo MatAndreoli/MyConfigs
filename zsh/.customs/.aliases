@@ -8,8 +8,12 @@ alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
-alias la='ls -a'
-alias ll='ls -al'
+if command -v eza &> /dev/null; then
+  alias ls='eza -lh --group-directories-first --icons=auto'
+  alias lsa='ls -a'
+  alias lt='eza --tree --level=2 --long --icons --git'
+  alias lta='lt -a'
+fi
 nv() {
   if [[ -d "$1" ]]; then
     nvim --cmd "cd $1"
@@ -25,6 +29,7 @@ alias lgrc='nv ${MY_CONFIGS_DIR}/lazygit/.config/lazygit/config.yml'
 alias ccrc='nv ~/.claude'
 alias ocrc='nv ~/.config/opencode/'
 alias rest='nv ~/Vivo/B2B/rest'
+alias ts='tailscale'
 
 # Opencode
 alias oc='opencode'

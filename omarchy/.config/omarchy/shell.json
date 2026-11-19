@@ -34,7 +34,7 @@
           "id": "omarchy.menu"
         },
         {
-          "id": "omarchy.workspaces"
+          "id": "matandreoli.workspaces"
         },
         {
           "id": "io.github.twiking.omacontrol"
@@ -75,7 +75,8 @@
         }
       ]
     },
-    "position": "top"
+    "position": "top",
+    "id": "matandreoli.bar"
   },
   "cloneSourceRestores": [
     "alanfortlink.clipboard",
@@ -119,6 +120,9 @@
     },
     {
       "id": "bobbynicholas.omaland"
+    },
+    {
+      "id": "typecraft.omacast"
     }
   ],
   "version": 1

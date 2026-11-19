@@ -44,3 +44,6 @@ o.rebind(
 	"YouTube Music Playlist",
 	"omarchy-launch-tui cliamp 'https://music.youtube.com/playlist?list=PLBMzFpjT6EXA&si=nb4PJB3_lmoO6HpN'"
 )
+
+hl.unbind("ALT + SPACE")
+hl.unbind("SUPER + SPACE")
