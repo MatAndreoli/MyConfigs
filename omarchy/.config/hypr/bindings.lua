@@ -45,5 +45,8 @@ o.rebind(
 	"omarchy-launch-tui cliamp 'https://music.youtube.com/playlist?list=PLBMzFpjT6EXA&si=nb4PJB3_lmoO6HpN'"
 )
 
+-- Herdr: SUPER + CTRL + RETURN opens the Herdr desktop app instead of the TUI.
+o.rebind("SUPER + CTRL + RETURN", "Herdr", { launch = "herdr-app" })
+
 hl.unbind("ALT + SPACE")
 hl.unbind("SUPER + SPACE")

@@ -73,4 +73,4 @@ hl.config({
 })
 -- <<< omaland managed block <<<
 
-hl.animation({ leaf = "workspaces", enabled = true, speed = 2, bezier = "easeOutQuint", style = "slide" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 1, bezier = "easeOutQuint", style = "slide" })

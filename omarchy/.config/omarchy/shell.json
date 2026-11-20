@@ -48,6 +48,9 @@
           "id": "omarchy.tray"
         },
         {
+          "id": "omarchy.tailscale"
+        },
+        {
           "id": "omarchy.agents"
         },
         {
@@ -75,17 +78,13 @@
         }
       ]
     },
-    "position": "top",
-    "id": "matandreoli.bar"
+    "position": "top"
   },
   "cloneSourceRestores": [
     "alanfortlink.clipboard",
     "io.github.sirjul1337.lock-explorer"
   ],
-  "disabledPlugins": [
-    "omarchy.clipboard",
-    "omarchy.lock"
-  ],
+  "disabledPlugins": ["omarchy.clipboard", "omarchy.lock"],
   "dock": {
     "pinned": [
       "org.gnome.Nautilus",
@@ -111,9 +110,7 @@
     },
     {
       "design": "seismograph",
-      "favorites": [
-        "seismograph"
-      ],
+      "favorites": ["seismograph"],
       "id": "io.github.sirjul1337.lock-explorer",
       "openAs": "panel",
       "tourSeen": true
